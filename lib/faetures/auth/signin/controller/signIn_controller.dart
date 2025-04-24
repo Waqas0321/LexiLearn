@@ -1,7 +1,5 @@
-import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/widgets/custom_toast_show.dart';
 class SignInController extends GetxController {
   ToastClass toast = ToastClass();

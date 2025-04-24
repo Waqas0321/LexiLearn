@@ -7,7 +7,6 @@ import '../../../../core/const/app_images.dart';
 import '../../../../core/utils/app_sizes.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/custom_input_textfield.dart';
-import '../../../../core/widgets/custom_outline_button.dart';
 import '../../../../core/widgets/custom_text_widget.dart';
 import '../controller/signIn_controller.dart';
 
@@ -26,77 +25,83 @@ class SignInScreen extends StatelessWidget {
             child: SafeArea(
               child: Form(
                 key: controller.formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      AppImages.logo,
-                      height: appSizes.getHeightPercentage(15),
-                      width: appSizes.getWidthPercentage(30),
-                    ),
-                    const Gap(23),
-                    CustomInputTextField(
-                      textEditingController: controller.emailController,
-                      hintText: "Enter Email",
-                      labelText: "Email",
-                      isValidator: true,
-                      emptyValueErrorText: "Please enter your email",
-                    ),
-                    const Gap(16),
-                    CustomInputTextField(
-                      textEditingController: controller.passwordController,
-                      hintText: "Enter Password",
-                      labelText: "Password",
-                      isObsecure: true,
-                      hasSuffixIcon: true,
-                      isValidator: true,
-                      emptyValueErrorText: "Please enter your password",
-                    ),
-                    const Gap(6),
-                     SizedBox(
-                        width: double.infinity,
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed(AppRoutes.FORGETPASSWORDSCREEN);
-                          },
-                          child: const CustomTextWidget(
-                            textAlign: TextAlign.end,
-                            text: "Forget Password?",
-                            fontSize: 14,
-                            textColor: AppColors.white,
-                          ),
-                        )),
-                    const Gap(21),
-                    Obx(
-                      () =>  CustomElevatedButton(
+                child: Padding(
+                  padding: appSizes.getCustomPadding(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        AppImages.logo,
+                        height: appSizes.getHeightPercentage(18),
+                        width: appSizes.getWidthPercentage(46),
+                      ),
+                      const Gap(23),
+                      CustomInputTextField(
+                        textEditingController: controller.emailController,
+                        hintText: "Enter Email",
+                        labelText: "Email",
+                        isValidator: true,
+                        emptyValueErrorText: "Please enter your email",
+                      ),
+                      const Gap(16),
+                      CustomInputTextField(
+                        textEditingController: controller.passwordController,
+                        hintText: "Enter Password",
+                        labelText: "Password",
+                        isObsecure: true,
+                        hasSuffixIcon: true,
+                        isValidator: true,
+                        emptyValueErrorText: "Please enter your password",
+                      ),
+                      const Gap(6),
+                       SizedBox(
+                          width: double.infinity,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.toNamed(AppRoutes.FORGETPASSWORDSCREEN);
+                            },
+                            child: const CustomTextWidget(
+                              textAlign: TextAlign.end,
+                              text: "Forget Password?",
+                              fontSize: 14,
+                              textColor: AppColors.blackish,
+                            ),
+                          )),
+                      const Gap(21),
+                      CustomElevatedButton(
                           onPress: () async{
                             if (controller.formKey.currentState!.validate()) {
+                              Get.toNamed(AppRoutes.HOMESCREEN);
                             } else {
                               controller.toast
                                   .showCustomToast("Please fill all fields");
                             }
                           },
                           text: "SIGN IN"),
-                    ),
-                    Gap(appSizes.getHeightPercentage(6)),
-                    SizedBox(
-                        width: appSizes.getWidthPercentage(70),
-                        child: const Divider(
-                          thickness: 0.5,
-                        )),
-                    const Gap(12),
-                    const CustomTextWidget(
-                      text: "Don't have any account?",
-                      fontSize: 15,
-                      textColor: AppColors.white,
-                    ),
-                    const Gap(12),
-                    CustomOutlineButton(
-                        onPress: () {
-                          Get.toNamed(AppRoutes.SIGNUPSCREEN);
-                        },
-                        text: "Create a new account"),
-                  ],
+                      Gap(appSizes.getHeightPercentage(6)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const CustomTextWidget(
+                            text: "Don't have any account?",
+                            fontSize: 12,
+                            textColor: AppColors.blackish,
+                          ),
+                          Gap(4),
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed(AppRoutes.SIGNUPSCREEN);
+                            },
+                            child: const CustomTextWidget(
+                              text: "Create account",
+                              fontSize: 13,
+                              textColor: AppColors.orange,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

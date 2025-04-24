@@ -1,6 +1,7 @@
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:lexi_learn/core/Const/app_images.dart';
 import '../../../../core/Const/app_colors.dart';
 import '../../../../core/utils/app_sizes.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
@@ -21,46 +22,57 @@ class ForgetPasswordScreen extends StatelessWidget {
       builder: (context, constraints) {
         return Scaffold(
           body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const CustomTextWidget(
-                  text: "Reset Password!",
-                  textColor: AppColors.white,
-                  textOverflow: TextOverflow.visible,
-                  fontSize: 28,
-                  fontWeight: FontWeight.w600,
-                ),
-                const Gap(18),
-                SizedBox(
-                  width: appSizes.getWidthPercentage(80),
-                  child: const CustomTextWidget(
-                    text:
-                        "Please enter your account email to reset your password!",
-                    textColor: AppColors.whitish,
-                    textOverflow: TextOverflow.visible,
+            child: Padding(
+              padding: appSizes.getCustomPadding(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppImages.logo,
+                    width: appSizes.getWidthPercentage(28),
+                    height: appSizes.getHeightPercentage(20),
                   ),
-                ),
-                const Gap(18),
-                CustomInputTextField(
+                  const CustomTextWidget(
+                    text: "Reset Password!",
+                    textColor: AppColors.black,
+                    textOverflow: TextOverflow.visible,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  const Gap(18),
+                  SizedBox(
+                    width: appSizes.getWidthPercentage(80),
+                    child: const CustomTextWidget(
+                      text:
+                          "Please enter your account email to reset your password!",
+                      textColor: AppColors.blackish,
+                      textOverflow: TextOverflow.visible,
+                    ),
+                  ),
+                  const Gap(18),
+                  CustomInputTextField(
                     hintText: "Enter your email",
                     textEditingController: controller.emailController,
-                    labelText: "Email"),
-                const Gap(23),
-                Obx(
-                  () => CustomElevatedButton(
+                    labelText: "Email",
+                  ),
+                  const Gap(23),
+                  Obx(
+                    () => CustomElevatedButton(
                       isLoading: controller.isLoading.value,
-                      onPress: () async{
+                      onPress: () async {
                         if (controller.emailController.text.isNotEmpty) {
                         } else {
-                          controller.toast
-                              .showCustomToast("Please enter your email");
+                          controller.toast.showCustomToast(
+                            "Please enter your email",
+                          );
                         }
                       },
-                      text: "Reset Password"),
-                )
-              ],
+                      text: "Reset Password",
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );

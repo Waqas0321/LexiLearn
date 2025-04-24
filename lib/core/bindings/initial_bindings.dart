@@ -1,4 +1,13 @@
 import 'package:get/get.dart';
+import 'package:lexi_learn/faetures/alphabets/controller/alphabets_controller.dart';
+import 'package:lexi_learn/faetures/animals/controller/animals_controller.dart';
+import 'package:lexi_learn/faetures/auth/forget_password/controller/forget_password_controller.dart';
+import 'package:lexi_learn/faetures/body_parts/controller/body_parts_controller.dart';
+import 'package:lexi_learn/faetures/colors/controller/colors_controller.dart';
+import 'package:lexi_learn/faetures/edthics/controller/ethics_controller.dart';
+import 'package:lexi_learn/faetures/fruits/controller/fruits_controller.dart';
+import 'package:lexi_learn/faetures/numbers/controller/numbers_controller.dart';
+import 'package:lexi_learn/faetures/splash/pages/loading/controller/loading_controller.dart';
 import '../../faetures/auth/sign_up/controller/signup_controller.dart';
 import '../../faetures/auth/signin/controller/signIn_controller.dart';
 import '../../faetures/home/controllers/home_controller.dart';
@@ -12,6 +21,16 @@ class InitialBindings extends Bindings {
       () => SplashController(),
     );
 
+    Get.put(LoadingController());
+    Get.lazyPut(
+          () => LoadingController(),
+    );
+
+    Get.put(ForgetPasswordController());
+    Get.lazyPut(
+          () => ForgetPasswordController(),
+    );
+
     Get.put(SignUpController());
     Get.lazyPut(
       () => SignUpController(),
@@ -21,9 +40,28 @@ class InitialBindings extends Bindings {
     Get.lazyPut(() => SignInController());
 
     Get.put(HomeController());
-    Get.lazyPut(
-      () => HomeController(),
-    );
+    Get.lazyPut(() => HomeController());
+
+    Get.put(AlphabetsController());
+    Get.lazyPut(() => AlphabetsController());
+
+    Get.put(NumbersController());
+    Get.lazyPut(() => NumbersController());
+
+    Get.put(ColorsController());
+    Get.lazyPut(() => NumbersController());
+
+    Get.put(FruitsController());
+    Get.lazyPut(() => FruitsController());
+
+    Get.put(EthicsController());
+    Get.lazyPut(() => EthicsController());
+
+    Get.put(AnimalsController());
+    Get.lazyPut(() => AnimalsController());
+
+    Get.put(BodyPartsController());
+    Get.lazyPut(() => BodyPartsController());
 
   }
 }

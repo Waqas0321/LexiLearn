@@ -7,14 +7,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor;
   final Color foregroundColor;
   final double fontSize;
+  final bool goBack;
   final List<Widget>? actionsWidgets;
 
   const CustomAppBar({
     super.key,
-    this.title = "Title Here",
-    this.backgroundColor = AppColors.darkBlue,
+    this.title = "LexiLearn",
+    this.backgroundColor = AppColors.orange,
     this.foregroundColor = AppColors.white,
     this.fontSize = 16,this.actionsWidgets,
+    this.goBack = false,
   });
 
   @override
@@ -22,11 +24,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: backgroundColor,
       foregroundColor: foregroundColor,
+      automaticallyImplyLeading: goBack,
       title: CustomTextWidget(
         text: title,
         textColor: foregroundColor,
         textAlign: TextAlign.start,
         fontSize: fontSize,
+        fontWeight: FontWeight.w500,
       ),
       actions: actionsWidgets,
     );

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
     );
     return GetMaterialApp(
-      title: "Tell Me",
+      title: "LexiLearn",
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       initialBinding: InitialBindings(),

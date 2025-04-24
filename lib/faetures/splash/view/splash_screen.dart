@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/Const/app_colors.dart';
 import '../../../core/Const/app_images.dart';
 import '../../../core/utils/app_sizes.dart';
 import '../controllers/splash_controller.dart';
@@ -14,12 +15,13 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Scaffold(
-          body: Center(
+        return Material(
+          color: AppColors.white,
+          child: Center(
             child: Image.asset(
               AppImages.logo,
-              height: appSizes.getHeightPercentage(18),
-              width: appSizes.getWidthPercentage(35),
+              height: 200,
+              width: 200,
             ),
           ),
         );

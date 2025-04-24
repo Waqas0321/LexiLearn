@@ -9,9 +9,9 @@ class CustomOutlineButton extends StatelessWidget {
     required this.text,
     this.height = 50,
     this.width = double.infinity,
-    this.borderColor = AppColors.whitish,
+    this.borderColor = AppColors.blackish,
     this.borderRadius = 13,
-    this.textColor = AppColors.white,
+    this.textColor = AppColors.blackish,
   });
 
   final Color textColor;
