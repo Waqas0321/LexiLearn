@@ -6,6 +6,7 @@ class AppRoutes{
   static const String FORGETPASSWORDSCREEN = "/forgetPasswordScreen";
 
   static const String HOMESCREEN = "/homeScreen";
+  static const String PROFILESCREEN = "/profileScreen";
   static const String ALPHABETSSCREEN = "/alphabetsScreen";
   static const String NUMBERSSCREEN = "/numbersScreen";
   static const String COLORSSCREEN = "/colorsScreen";

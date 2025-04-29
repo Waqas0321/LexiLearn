@@ -19,40 +19,49 @@ class LoadingScreen extends StatelessWidget {
       builder: (context, constraints) {
         return Material(
           color: AppColors.white,
-          child: Center(
-            child: Padding(
-              padding: appSizes.getCustomPadding(),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(AppImages.loading),
-                  Gap(20),
-                  Obx(
-                    () => Padding(
-                      padding: appSizes.getCustomPadding(),
-                      child: Column(
-                        children: [
-                          LinearProgressIndicator(
-                            value: double.parse(
-                              controller.progress.value.toStringAsFixed(2),
+          child: Container(
+            height: appSizes.getHeightPercentage(100),
+            width: appSizes.getWidthPercentage(100),
+            padding: appSizes.getCustomPadding(),
+            decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage(AppImages.background),fit: BoxFit.cover)
+            ),
+            child: Center(
+              child: Padding(
+                padding: appSizes.getCustomPadding(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Gap(appSizes.getHeightPercentage(8)),
+                    Image.asset(AppImages.loading,height: 200,),
+                    Gap(appSizes.getHeightPercentage(5)),
+                    Obx(
+                      () => Padding(
+                        padding: appSizes.getCustomPadding(),
+                        child: Column(
+                          children: [
+                            LinearProgressIndicator(
+                              value: double.parse(
+                                controller.progress.value.toStringAsFixed(2),
+                              ),
+                              backgroundColor: AppColors.whitish,
+                              color: AppColors.green,
+                              minHeight: 8,
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                            backgroundColor: AppColors.whitish,
-                            color: AppColors.orange,
-                            minHeight: 8,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          Gap(10),
-                          CustomTextWidget(
-                            text:
-                                "${(controller.progress.value * 100).toStringAsFixed(0)}%",
-                            textColor: AppColors.orange,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ],
+                            Gap(10),
+                            CustomTextWidget(
+                              text:
+                                  "${(controller.progress.value * 100).toStringAsFixed(0)}%",
+                              textColor: AppColors.black,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

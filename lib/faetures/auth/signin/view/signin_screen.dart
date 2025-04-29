@@ -21,19 +21,27 @@ class SignInScreen extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Material(
-          child: Center(
-            child: SafeArea(
-              child: Form(
-                key: controller.formKey,
+          child: Container(
+            height: appSizes.getHeightPercentage(100),
+            width: appSizes.getWidthPercentage(100),
+            padding: appSizes.getCustomPadding(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(AppImages.background),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Center(
+              child: SafeArea(
                 child: Padding(
-                  padding: appSizes.getCustomPadding(),
+                  padding: appSizes.getCustomPadding(top: 0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Image.asset(
                         AppImages.logo,
-                        height: appSizes.getHeightPercentage(18),
-                        width: appSizes.getWidthPercentage(46),
+                        height: appSizes.getHeightPercentage(12),
+                        width: appSizes.getWidthPercentage(40),
                       ),
                       const Gap(23),
                       CustomInputTextField(
@@ -54,31 +62,37 @@ class SignInScreen extends StatelessWidget {
                         emptyValueErrorText: "Please enter your password",
                       ),
                       const Gap(6),
-                       SizedBox(
-                          width: double.infinity,
-                          child: GestureDetector(
-                            onTap: () {
-                              Get.toNamed(AppRoutes.FORGETPASSWORDSCREEN);
-                            },
-                            child: const CustomTextWidget(
-                              textAlign: TextAlign.end,
-                              text: "Forget Password?",
-                              fontSize: 14,
-                              textColor: AppColors.blackish,
-                            ),
-                          )),
+                      SizedBox(
+                        width: double.infinity,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.FORGETPASSWORDSCREEN);
+                          },
+                          child: const CustomTextWidget(
+                            textAlign: TextAlign.end,
+                            text: "Forget Password?",
+                            fontSize: 14,
+                            textColor: AppColors.blackish,
+                          ),
+                        ),
+                      ),
                       const Gap(21),
-                      CustomElevatedButton(
-                          onPress: () async{
-                            if (controller.formKey.currentState!.validate()) {
-                              Get.toNamed(AppRoutes.HOMESCREEN);
+                      Obx(
+                        () =>  CustomElevatedButton(
+                          isLoading: controller.isLoading.value,
+                          onPress: () async {
+                            if (controller.passwordController.text != null) {
+                              controller.userSignIn();
                             } else {
-                              controller.toast
-                                  .showCustomToast("Please fill all fields");
+                              controller.toast.showCustomToast(
+                                "Please fill all fields",
+                              );
                             }
                           },
-                          text: "SIGN IN"),
-                      Gap(appSizes.getHeightPercentage(6)),
+                          text: "SIGN IN",
+                        ),
+                      ),
+                      Gap(appSizes.getHeightPercentage(2)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

@@ -14,7 +14,7 @@ class LoadingController extends GetxController{
   }
 
   void startLoading(){
-    timer = Timer.periodic(const Duration(milliseconds: 180), (timer) async {
+    timer = Timer.periodic(const Duration(milliseconds: 80), (timer) async {
       if (progress.value < 1.0) {
         progress.value += 0.01;
       } else {

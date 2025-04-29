@@ -2,6 +2,9 @@ import 'package:get/get.dart';
 import 'package:lexi_learn/core/Const/app_images.dart';
 import 'package:lexi_learn/core/app_routes/routes.dart';
 import 'package:lexi_learn/data/models/modules_model.dart';
+import 'package:lexi_learn/data/providers/firestore_provider.dart';
+
+import '../../../data/models/user_model.dart';
 class HomeController extends GetxController {
 
   final List<ModulesModel> modules = [
@@ -13,4 +16,9 @@ class HomeController extends GetxController {
     ModulesModel(image: AppImages.animals, onPress: AppRoutes.ANIMALSSCREEN),
     ModulesModel(image: AppImages.bodyParts, onPress: AppRoutes.BODYPARTSSCREEN),
   ];
+
+  FireStoreProvider fireStore = FireStoreProvider();
+  Stream<UserModel?> getUserStream() {
+    return fireStore.getDataByUserID(collectionName: "lexi_learn_users", fromJson: UserModel.fromJson);
+  }
 }

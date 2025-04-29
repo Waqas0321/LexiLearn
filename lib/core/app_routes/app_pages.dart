@@ -9,6 +9,7 @@ import 'package:lexi_learn/faetures/colors/view/colors_screen.dart';
 import 'package:lexi_learn/faetures/edthics/view/ethics_screen.dart';
 import 'package:lexi_learn/faetures/fruits/view/fruits_screen.dart';
 import 'package:lexi_learn/faetures/numbers/view/numbers_screen.dart';
+import 'package:lexi_learn/faetures/profile/view/profile_screen.dart';
 import 'package:lexi_learn/faetures/splash/pages/loading/view/loading_screen.dart';
 import '../../faetures/auth/sign_up/view/sign_up_screen.dart';
 import '../../faetures/auth/signin/view/signin_screen.dart';
@@ -92,6 +93,12 @@ class AppPages {
     GetPage(
         name: AppRoutes.BODYPARTSSCREEN,
         page: () => BodyPartsScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+    GetPage(
+        name: AppRoutes.PROFILESCREEN,
+        page: () => ProfileScreen(),
         transition: Transition.fade,
         curve: Curves.linear,
         transitionDuration: const Duration(microseconds: 200)),

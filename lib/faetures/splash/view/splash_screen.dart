@@ -17,11 +17,19 @@ class SplashScreen extends StatelessWidget {
       builder: (context, constraints) {
         return Material(
           color: AppColors.white,
-          child: Center(
-            child: Image.asset(
-              AppImages.logo,
-              height: 200,
-              width: 200,
+          child: Container(
+            height: appSizes.getHeightPercentage(100),
+            width: appSizes.getWidthPercentage(100),
+            padding: appSizes.getCustomPadding(),
+            decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage(AppImages.background),fit: BoxFit.cover)
+            ),
+            child: Center(
+              child: Image.asset(
+                AppImages.logo,
+                height: 170,
+                width: 170,
+              ),
             ),
           ),
         );

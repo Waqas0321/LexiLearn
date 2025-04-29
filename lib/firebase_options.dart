@@ -50,21 +50,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAL0Exg2F7y0lTGFQd18BG3mlF4vf8hxOg',
-    appId: '1:748350071630:android:8aea353fa11d56b6bc341f',
-    messagingSenderId: '748350071630',
-    projectId: 'chatapp-10ca2',
-    storageBucket: 'chatapp-10ca2.appspot.com',
+    apiKey: 'AIzaSyDa__zEouUu4yUGV7U2Tv2MmCjKvJJD2Fg',
+    appId: '1:452022753540:android:93044ff8c82f5995d8d851',
+    messagingSenderId: '452022753540',
+    projectId: 'civitante',
+    storageBucket: 'civitante.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAVDKiblRQAlw_aCcaBBX0DlGAssTip8wo',
-    appId: '1:748350071630:ios:ed743538241f3245bc341f',
-    messagingSenderId: '748350071630',
-    projectId: 'chatapp-10ca2',
-    storageBucket: 'chatapp-10ca2.appspot.com',
-    androidClientId: '748350071630-fm99h937rc3fs808f1fc134i9sihmcsn.apps.googleusercontent.com',
-    iosClientId: '748350071630-q83lrcpkjlepu1ei0sqa9ltll0rle5n6.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAkYIVbEOR9bu_ScqDXrwxq816WL3oHrZQ',
+    appId: '1:452022753540:ios:0f3fab3f860ffb5cd8d851',
+    messagingSenderId: '452022753540',
+    projectId: 'civitante',
+    storageBucket: 'civitante.firebasestorage.app',
+    androidClientId: '452022753540-4fplhmji9fhpv79rf79s1tjpihq1hrp4.apps.googleusercontent.com',
+    iosClientId: '452022753540-ok2pje265h9bl9cuojhftb1mucqcsf2s.apps.googleusercontent.com',
     iosBundleId: 'com.lexilearn.lexiLearn',
   );
+
 }
