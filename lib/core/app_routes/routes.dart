@@ -14,4 +14,6 @@ class AppRoutes{
   static const String ETHICSSCREEN = "/ethicsScreen";
   static const String ANIMALSSCREEN = "/animalsScreen";
   static const String BODYPARTSSCREEN = "/bodyPartsScreen";
+
+  static const String QUIZSCREEN = "/quizScreen";
 }

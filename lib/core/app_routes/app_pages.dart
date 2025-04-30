@@ -6,6 +6,7 @@ import 'package:lexi_learn/faetures/animals/view/animals_screen.dart';
 import 'package:lexi_learn/faetures/auth/forget_password/view/forget_password_screen.dart';
 import 'package:lexi_learn/faetures/body_parts/view/body_parts_screen.dart';
 import 'package:lexi_learn/faetures/colors/view/colors_screen.dart';
+import 'package:lexi_learn/faetures/colors/view/quiz_screen.dart';
 import 'package:lexi_learn/faetures/edthics/view/ethics_screen.dart';
 import 'package:lexi_learn/faetures/fruits/view/fruits_screen.dart';
 import 'package:lexi_learn/faetures/numbers/view/numbers_screen.dart';
@@ -99,6 +100,12 @@ class AppPages {
     GetPage(
         name: AppRoutes.PROFILESCREEN,
         page: () => ProfileScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+    GetPage(
+        name: AppRoutes.QUIZSCREEN,
+        page: () => QuizScreen(),
         transition: Transition.fade,
         curve: Curves.linear,
         transitionDuration: const Duration(microseconds: 200)),
