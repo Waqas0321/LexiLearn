@@ -32,38 +32,38 @@ class SignUpController extends GetxController {
   Future<void> userSignUp() async {
     try {
       isLoading.value = true;
-      await storage.uploadImage(imagePicker.selectedImage.value!).then((
-        value,
-      ) async {
-        await auth
-            .signUp(
-              emailController.text.trim(),
-              createPasswordController.text.trim(),
-            )
-            .then((value) async {
-              String? userId = await PreferenceHelper.getString("userID");
-              UserModel user = UserModel(
-                firstName: firstNameController.text.trim(),
-                lastName: lastNameController.text.trim(),
-                email: emailController.text.trim(),
-                userID: userId,
-                imagePath: storage.imageUrl.value,
-              );
-              await fireStore
-                  .storeDataWithUserID(
-                    collectionName: "lexi_learn_users",
-                    data: user,
-                    toJson: (user) => user.toJson(),
-                  )
-                  .then((value) {
-                    refreshField();
-                    Get.toNamed(AppRoutes.HOMESCREEN);
-                  });
-              return null;
-            });
+      if (imagePicker.selectedImage.value != null) {
+        await storage.uploadImage(imagePicker.selectedImage.value!);
+      }
+      await auth
+          .signUp(
+        emailController.text.trim(),
+        createPasswordController.text.trim(),
+      )
+          .then((_) async {
+        String? userId = await PreferenceHelper.getString("userID");
+
+        UserModel user = UserModel(
+          firstName: firstNameController.text.trim(),
+          lastName: lastNameController.text.trim(),
+          email: emailController.text.trim(),
+          userID: userId,
+          imagePath: storage.imageUrl.value,
+        );
+
+        await fireStore
+            .storeDataWithUserID(
+          collectionName: "lexi_learn_users",
+          data: user,
+          toJson: (user) => user.toJson(),
+        )
+            .then((_) {
+          refreshField();
+          Get.toNamed(AppRoutes.HOMESCREEN);
+        });
       });
     } catch (e) {
-      log("Exception : $e");
+      log("Exception: $e");
     } finally {
       isLoading.value = false;
     }

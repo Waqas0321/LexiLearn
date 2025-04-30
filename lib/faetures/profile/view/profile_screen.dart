@@ -94,9 +94,7 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 child: CircleAvatar(
                                   radius: 55,
-                                  backgroundImage: NetworkImage(
-                                    user!.imagePath!,
-                                  ),
+                                  backgroundImage: user!.imagePath==""? AssetImage(AppImages.logo):NetworkImage(user.imagePath!),
                                 ),
                               ),
                               Gap(26),

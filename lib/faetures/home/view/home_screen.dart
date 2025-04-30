@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                       UserModel? user = snapshot.data;
                       return CircleAvatar(
                         backgroundColor: AppColors.whitish,
-                        backgroundImage: NetworkImage(user!.imagePath!),
+                        backgroundImage: user!.imagePath==""? AssetImage(AppImages.logo):NetworkImage(user.imagePath!),
                       );
                     }
                     return CircleAvatar(
