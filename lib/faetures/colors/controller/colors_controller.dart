@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
+import 'package:lexi_learn/data/providers/firestore_provider.dart';
 import '../../../data/models/color_model.dart';
 
 class ColorsController extends GetxController {
+  FireStoreProvider fireStore = FireStoreProvider();
   final FlutterTts tts = FlutterTts();
 
   var colors = <ColorModel>[
@@ -44,4 +46,13 @@ class ColorsController extends GetxController {
     });
   }
   void reListen() => speakColor();
+
+  Stream<Map<String, dynamic>?> getColorsQuizProgress() {
+    return fireStore.getDataByUserID(
+      collectionName: "colors_quiz",
+      fromJson: (data) => data,
+    );
+  }
+
+
 }

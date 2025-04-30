@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -19,6 +21,8 @@ class QuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<QuestionModel>? questions = Get.arguments['questions'];
+    final int quizIndex = Get.arguments['quizIndex'];
+    print(quizIndex);
     controller.loadQuestions(questions!);
 
     return Scaffold(
@@ -109,7 +113,7 @@ class QuizScreen extends StatelessWidget {
               child: CustomElevatedButton(
                 isLoading: controller.isLoading.value,
                 onPress: () {
-                  controller.submit();
+                  controller.submit(quizIndex);
                 },
                 text: "Submit",
               ),

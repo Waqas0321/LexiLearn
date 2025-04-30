@@ -1,8 +1,13 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:lexi_learn/core/widgets/custom_toast_show.dart';
+import 'package:lexi_learn/data/providers/firestore_provider.dart';
 import '../../../data/models/question_model.dart';
 
 class QuizController extends GetxController {
+  FireStoreProvider fireStore = FireStoreProvider();
   ToastClass toast = ToastClass();
   var submitted = false.obs;
   var selectedAnswers = <int, String>{}.obs;
@@ -25,13 +30,46 @@ class QuizController extends GetxController {
     return score;
   }
 
-  void submit() {
-    submitted.value = true;
-    toast.showCustomToast(
-      "You scored ${getScore()} out of ${questions.length}",
-    );
-    Get.back();
+  void submit(int quizIndex) {
+    try {
+      final data = prepareQuizData(quizIndex);
+      storeQuizData(data);
+      submitted.value = true;
+      showQuizResultToast();
+      Get.back();
+    } catch (e) {
+      handleSubmissionError(e);
+    }
   }
+
+  Map<String, dynamic> prepareQuizData(int quizIndex) {
+    return {
+      'quizIndex': quizIndex,
+      'timestamp': FieldValue.serverTimestamp(),
+    };
+  }
+
+  void storeQuizData(Map<String, dynamic> data) {
+    fireStore.storeDataWithUserID(
+      collectionName: "colors_quiz",
+      data: data,
+      toJson: (data) => data,
+    );
+  }
+
+  void showQuizResultToast() {
+    final score = getScore();
+    final totalQuestions = questions.length;
+    toast.showCustomToast(
+      "You scored $score out of $totalQuestions",
+    );
+  }
+
+  void handleSubmissionError(dynamic error) {
+    log("Error during quiz submission: $error");
+    toast.showCustomToast("An error occurred while submitting the quiz. Please try again.");
+  }
+
 
   void resetQuiz() {
     submitted.value = false;
