@@ -2,12 +2,14 @@ import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:lexi_learn/core/app_routes/routes.dart';
 import 'package:lexi_learn/faetures/alphabets/view/alphabets_screen.dart';
+import 'package:lexi_learn/faetures/animals/view/animals_quiz_screen.dart';
 import 'package:lexi_learn/faetures/animals/view/animals_screen.dart';
 import 'package:lexi_learn/faetures/auth/forget_password/view/forget_password_screen.dart';
 import 'package:lexi_learn/faetures/body_parts/view/body_parts_screen.dart';
 import 'package:lexi_learn/faetures/colors/view/colors_screen.dart';
-import 'package:lexi_learn/faetures/colors/view/quiz_screen.dart';
+import 'package:lexi_learn/faetures/colors/view/colors_quiz_screen.dart';
 import 'package:lexi_learn/faetures/edthics/view/ethics_screen.dart';
+import 'package:lexi_learn/faetures/fruits/view/fruits_quiz_screen.dart';
 import 'package:lexi_learn/faetures/fruits/view/fruits_screen.dart';
 import 'package:lexi_learn/faetures/numbers/view/numbers_screen.dart';
 import 'package:lexi_learn/faetures/profile/view/profile_screen.dart';
@@ -104,8 +106,20 @@ class AppPages {
         curve: Curves.linear,
         transitionDuration: const Duration(microseconds: 200)),
     GetPage(
-        name: AppRoutes.QUIZSCREEN,
-        page: () => QuizScreen(),
+        name: AppRoutes.COLORSQUIZSCREEN,
+        page: () => ColorsQuizScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+    GetPage(
+        name: AppRoutes.FRUITSQUIZSCREEN,
+        page: () => FruitsQuizScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+    GetPage(
+        name: AppRoutes.ANIMALSQUIZSCREEN,
+        page: () => AnimalsQuizScreen(),
         transition: Transition.fade,
         curve: Curves.linear,
         transitionDuration: const Duration(microseconds: 200)),

@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 import 'package:lexi_learn/faetures/alphabets/controller/alphabets_controller.dart';
 import 'package:lexi_learn/faetures/animals/controller/animals_controller.dart';
+import 'package:lexi_learn/faetures/animals/controller/animals_quiz_controller.dart';
 import 'package:lexi_learn/faetures/auth/forget_password/controller/forget_password_controller.dart';
 import 'package:lexi_learn/faetures/body_parts/controller/body_parts_controller.dart';
 import 'package:lexi_learn/faetures/colors/controller/colors_controller.dart';
-import 'package:lexi_learn/faetures/colors/controller/quiz_controller.dart';
+import 'package:lexi_learn/faetures/colors/controller/colors_quiz_controller.dart';
 import 'package:lexi_learn/faetures/edthics/controller/ethics_controller.dart';
 import 'package:lexi_learn/faetures/fruits/controller/fruits_controller.dart';
+import 'package:lexi_learn/faetures/fruits/controller/fruits_quiz_controller.dart';
 import 'package:lexi_learn/faetures/numbers/controller/numbers_controller.dart';
 import 'package:lexi_learn/faetures/profile/controller/profile_controller.dart';
 import 'package:lexi_learn/faetures/splash/pages/loading/controller/loading_controller.dart';
@@ -19,24 +21,16 @@ class InitialBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(SplashController());
-    Get.lazyPut(
-      () => SplashController(),
-    );
+    Get.lazyPut(() => SplashController(),);
 
     Get.put(LoadingController());
-    Get.lazyPut(
-          () => LoadingController(),
-    );
+    Get.lazyPut(() => LoadingController(),);
 
     Get.put(ForgetPasswordController());
-    Get.lazyPut(
-          () => ForgetPasswordController(),
-    );
+    Get.lazyPut(() => ForgetPasswordController(),);
 
     Get.put(SignUpController());
-    Get.lazyPut(
-      () => SignUpController(),
-    );
+    Get.lazyPut(() => SignUpController(),);
 
     Get.put(SignInController());
     Get.lazyPut(() => SignInController());
@@ -68,8 +62,14 @@ class InitialBindings extends Bindings {
     Get.put(ProfileController());
     Get.lazyPut(() => ProfileController());
 
-    Get.put(QuizController());
-    Get.lazyPut(() => QuizController());
+    Get.put(ColorsQuizController());
+    Get.lazyPut(() => ColorsQuizController());
+
+    Get.put(FruitsQuizController());
+    Get.lazyPut(() => FruitsQuizController());
+
+    Get.put(AnimalsQuizController());
+    Get.lazyPut(() => AnimalsQuizController());
 
   }
 }

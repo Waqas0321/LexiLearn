@@ -9,7 +9,7 @@ import '../../../core/Const/app_colors.dart';
 import '../../../core/Const/app_images.dart';
 import '../../../core/widgets/custom_appbar.dart';
 import '../../../core/widgets/custom_text_widget.dart';
-import '../../../data/models/question_model.dart';
+import '../../../data/models/colors_question_model.dart';
 import 'color_detail_screen.dart';
 
 class ColorsScreen extends StatelessWidget {
@@ -174,7 +174,7 @@ class ColorsScreen extends StatelessWidget {
           final otherOptions = [...group]..remove(color)..shuffle();
           final options = ([color.name] + otherOptions.take(3).map((e) => e.name).toList())..shuffle();
 
-          return QuestionModel(
+          return ColorsQuestionModel(
             question: "What is the name of this color?",
             options: options,
             correctAnswer: color.name,
@@ -184,7 +184,7 @@ class ColorsScreen extends StatelessWidget {
         }).toList();
         questions.shuffle();
         Get.toNamed(
-          AppRoutes.QUIZSCREEN,
+          AppRoutes.COLORSQUIZSCREEN,
           arguments: {
             'questions': questions,
             'quizIndex': quizIndex,
