@@ -28,28 +28,9 @@ class HomeScreen extends StatelessWidget {
                 onTap: () {
                   Get.toNamed(AppRoutes.PROFILESCREEN);
                 },
-                child: StreamBuilder(
-                  stream: controller.getUserStream(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircleAvatar(
-                        backgroundColor: AppColors.whitish,
-                        child: CircularProgressIndicator(
-                          color: AppColors.orange,
-                        ),
-                      );
-                    } else if (snapshot.hasData) {
-                      UserModel? user = snapshot.data;
-                      return CircleAvatar(
-                        backgroundColor: AppColors.whitish,
-                        backgroundImage: user!.imagePath==""? AssetImage(AppImages.logo):NetworkImage(user.imagePath!),
-                      );
-                    }
-                    return CircleAvatar(
-                      backgroundColor: AppColors.whitish,
-                      backgroundImage: AssetImage(AppImages.me),
-                    );
-                  },
+                child: CircleAvatar(
+                  backgroundColor: AppColors.whitish,
+                  backgroundImage: AssetImage(AppImages.logo),
                 ),
               ),
               Gap(12),

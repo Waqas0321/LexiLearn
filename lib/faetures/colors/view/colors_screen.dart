@@ -140,7 +140,7 @@ class ColorsScreen extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
-                                Icon(Icons.star, color: color.color, size: 42),
+                                Icon(Icons.star, color: color.color, size: 52),
                                 CustomTextWidget(
                                   text: color.name,
                                   fontSize: 12,

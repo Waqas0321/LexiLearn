@@ -3,14 +3,12 @@ class UserModel {
   String? userID;
   String lastName;
   String email;
-  String? imagePath;
 
   UserModel({
     required this.firstName,
     this.userID,
     required this.lastName,
     required this.email,
-    this.imagePath,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -19,7 +17,6 @@ class UserModel {
       userID: json['userId'] ?? '',
       lastName: json['lastName'] ?? '',
       email: json['email'] ?? '',
-      imagePath: json['imagePath'],
     );
   }
 
@@ -29,7 +26,6 @@ class UserModel {
       'userId': userID,
       'lastName': lastName,
       'email': email,
-      'imagePath': imagePath,
     };
   }
 }

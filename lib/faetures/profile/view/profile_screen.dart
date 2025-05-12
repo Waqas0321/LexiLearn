@@ -60,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                           padding: appSizes.getCustomPadding(),
                           margin: appSizes.getCustomPadding(),
                           decoration: BoxDecoration(
-                            color: AppColors.white,
+                            color: AppColors.orange2,
                             borderRadius: BorderRadius.circular(24),
                             boxShadow: [
                               BoxShadow(
@@ -94,12 +94,12 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 child: CircleAvatar(
                                   radius: 55,
-                                  backgroundImage: user!.imagePath==""? AssetImage(AppImages.logo):NetworkImage(user.imagePath!),
+                                  backgroundImage: AssetImage(AppImages.logo),
                                 ),
                               ),
                               Gap(26),
                               CustomTextWidget(
-                                text: "${user.firstName} ${user.lastName}",
+                                text: "${user!.firstName} ${user.lastName}",
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
                                 textColor: AppColors.green,

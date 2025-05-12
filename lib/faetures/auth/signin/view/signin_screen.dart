@@ -36,7 +36,7 @@ class SignInScreen extends StatelessWidget {
                 child: Padding(
                   padding: appSizes.getCustomPadding(top: 0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         AppImages.logo,
@@ -106,9 +106,10 @@ class SignInScreen extends StatelessWidget {
                             onTap: () {
                               Get.toNamed(AppRoutes.SIGNUPSCREEN);
                             },
-                            child: const CustomTextWidget(
+                            child: CustomTextWidget(
                               text: "Create account",
                               fontSize: 13,
+                              fontWeight: FontWeight.w500,
                               textColor: AppColors.orange,
                             ),
                           ),

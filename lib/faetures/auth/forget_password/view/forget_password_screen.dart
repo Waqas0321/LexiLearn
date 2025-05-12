@@ -32,7 +32,7 @@ class ForgetPasswordScreen extends StatelessWidget {
               child: Padding(
                 padding: appSizes.getCustomPadding(top: 0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
                       AppImages.logo,

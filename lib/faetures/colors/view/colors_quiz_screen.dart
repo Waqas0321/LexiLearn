@@ -24,7 +24,7 @@ class ColorsQuizScreen extends StatelessWidget {
     controller.loadQuestions(questions!);
 
     return Scaffold(
-      appBar: CustomAppBar(title: "Quiz", goBack: true),
+      appBar: CustomAppBar(title: "🎉 Quiz Time!", goBack: true),
       body: Container(
         height: appSizes.getHeightPercentage(100),
         width: appSizes.getWidthPercentage(100),
@@ -47,58 +47,80 @@ class ColorsQuizScreen extends StatelessWidget {
                   final submitted = controller.submitted.value;
                   return Obx(() {
                     final selected = controller.selectedAnswers[index];
-                    return Card(
-                      elevation: 4,
-                      child: Padding(
-                        padding: appSizes.getCustomPadding(),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomTextWidget(
-                              text: 'Q${index + 1}: ${question.question}',
-                              fontWeight: FontWeight.w500,
-                            ),
-                            if (question.displayColor != null)
-                              Icon(Icons.star, color: question.displayColor, size: 40),
-                            ...question.options.map((option) {
-                              final isSelected = selected == option;
-                              final isCorrect = question.correctAnswer == option;
-                              Color tileColor = Colors.transparent;
-                              if (submitted) {
-                                if (isSelected && isCorrect) {
-                                  tileColor = Colors.green.shade100;
-                                } else if (isSelected && !isCorrect) {
-                                  tileColor = Colors.red.shade100;
-                                }
-                              }
-                              return Container(
-                                padding: const EdgeInsets.symmetric(vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: tileColor,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Radio<String>(
-                                      value: option,
-                                      groupValue: selected,
-                                      activeColor: AppColors.orange,
-                                      onChanged: submitted
-                                          ? null
-                                          : (value) {
-                                        controller.selectedAnswers[index] = value!;
-                                      },
-                                    ),
-                                    CustomTextWidget(
+                    return AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      margin: const EdgeInsets.only(bottom: 16),
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: AppColors.orange2,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.blackish,
+                            blurRadius: 10,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextWidget(
+                            text: 'Q${index + 1} 🎈: ${question.question}',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            textOverflow: TextOverflow.visible,
+                            textAlign: TextAlign.start,
+                            textColor: AppColors.orange,
+                          ),
+                          if (question.displayColor != null)
+                            Icon(Icons.star, color: question.displayColor, size: 70),
+                          Gap(10),
+                          ...question.options.map((option) {
+                            final isSelected = selected == option;
+                            Color tileColor = Colors.white;
+                            Color borderColor = AppColors.brown;
+                            Color textColor = AppColors.black;
+                            Color backgroundColor = AppColors.white;
+                            if (isSelected) {
+                              tileColor = AppColors.white;
+                              textColor = AppColors.white;
+                              borderColor = AppColors.orange;
+                              backgroundColor = AppColors.orange;
+                            }
+                            return Container(
+                              margin: const EdgeInsets.symmetric(vertical: 6),
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              decoration: BoxDecoration(
+                                color: backgroundColor,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: borderColor),
+                              ),
+                              child: Row(
+                                children: [
+                                  Radio<String>(
+                                    value: option,
+                                    groupValue: selected,
+                                    activeColor: AppColors.white,
+                                    onChanged: submitted
+                                        ? null
+                                        : (value) {
+                                      controller.selectedAnswers[index] = value!;
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: CustomTextWidget(
                                       text: option,
                                       textAlign: TextAlign.start,
+                                      textColor: textColor,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  ],
-                                ),
-                              );
-                            }),
-                          ],
-                        ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                        ],
                       ),
                     );
                   });
@@ -113,7 +135,7 @@ class ColorsQuizScreen extends StatelessWidget {
                 onPress: () {
                   controller.submit(quizIndex);
                 },
-                text: "Submit",
+                text: "🚀 Submit Answers",
               ),
             )
           ],

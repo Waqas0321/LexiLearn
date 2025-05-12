@@ -25,7 +25,7 @@ class FruitsQuizScreen extends StatelessWidget {
     controller.loadQuestions(questions!);
 
     return Scaffold(
-      appBar: CustomAppBar(title: "Quiz", goBack: true),
+      appBar: CustomAppBar(title: "🎉 Quiz Time!", goBack: true),
       body: Container(
         height: appSizes.getHeightPercentage(100),
         width: appSizes.getWidthPercentage(100),
@@ -48,58 +48,85 @@ class FruitsQuizScreen extends StatelessWidget {
                   final submitted = controller.submitted.value;
                   return Obx(() {
                     final selected = controller.selectedAnswers[index];
-                    return Card(
-                      elevation: 4,
-                      child: Padding(
-                        padding: appSizes.getCustomPadding(),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomTextWidget(
-                              text: 'Q${index + 1}: ${question.question}',
-                              fontWeight: FontWeight.w500,
+                    return AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      margin: const EdgeInsets.only(bottom: 16),
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: AppColors.orange2,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.blackish,
+                            blurRadius: 10,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextWidget(
+                            text: 'Q${index + 1} 🎈: ${question.question}',
+                            fontSize: 18,
+                            textAlign: TextAlign.start,
+                            textOverflow: TextOverflow.visible,
+                            fontWeight: FontWeight.bold,
+                            textColor: AppColors.orange,
+                          ),
+                          Gap(8),
+                          if (question.displayImage != null)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                question.displayImage!,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            if (question.displayImage != null)
-                              Image.asset(question.displayImage!,height: 50),
-                            ...question.options.map((option) {
-                              final isSelected = selected == option;
-                              final isCorrect = question.correctAnswer == option;
-                              Color tileColor = Colors.transparent;
-                              if (submitted) {
-                                if (isSelected && isCorrect) {
-                                  tileColor = Colors.green.shade100;
-                                } else if (isSelected && !isCorrect) {
-                                  tileColor = Colors.red.shade100;
-                                }
-                              }
-                              return Container(
-                                padding: const EdgeInsets.symmetric(vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: tileColor,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Radio<String>(
-                                      value: option,
-                                      groupValue: selected,
-                                      activeColor: AppColors.orange,
-                                      onChanged: submitted
-                                          ? null
-                                          : (value) {
-                                        controller.selectedAnswers[index] = value!;
-                                      },
-                                    ),
-                                    CustomTextWidget(
+                          Gap(10),
+                          ...question.options.map((option) {
+                            final isSelected = selected == option;
+                            Color backgroundColor = AppColors.white;
+                            Color borderColor = AppColors.brown;
+                            Color titleColor = AppColors.black;
+                            if (isSelected) {
+                              backgroundColor = AppColors.orange;
+                              borderColor = AppColors.orange;
+                              titleColor = AppColors.white;
+                            }
+                            return Container(
+                              margin: const EdgeInsets.symmetric(vertical: 6),
+                              decoration: BoxDecoration(
+                                color: backgroundColor,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: borderColor),
+                              ),
+                              child: Row(
+                                children: [
+                                  Radio<String>(
+                                    value: option,
+                                    groupValue: selected,
+                                    activeColor: AppColors.white,
+                                    onChanged: submitted
+                                        ? null
+                                        : (value) {
+                                      controller.selectedAnswers[index] = value!;
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: CustomTextWidget(
                                       text: option,
                                       textAlign: TextAlign.start,
+                                      fontSize: 16,
+                                      textColor: titleColor,
                                     ),
-                                  ],
-                                ),
-                              );
-                            }),
-                          ],
-                        ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                        ],
                       ),
                     );
                   });
@@ -114,7 +141,7 @@ class FruitsQuizScreen extends StatelessWidget {
                 onPress: () {
                   controller.submit(quizIndex);
                 },
-                text: "Submit",
+                text: "🚀 Submit Answers",
               ),
             )
           ],
