@@ -178,6 +178,7 @@ class FruitsScreen extends StatelessWidget {
             correctAnswer: fruit.name,
             displayImage: fruit.imagePath,
             isColorQuestion: true,
+            id: fruit.name
           );
         }).toList();
         questions.shuffle();
