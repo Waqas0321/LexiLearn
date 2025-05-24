@@ -36,6 +36,16 @@ class HomeScreen extends StatelessWidget {
               Gap(12),
             ],
           ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: AppColors.white,
+            onPressed: () {
+              Get.toNamed(AppRoutes.AICHATSCREEN);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(AppImages.ai),
+            ),
+          ),
           body: Container(
             height: appSizes.getHeightPercentage(100),
             width: appSizes.getWidthPercentage(100),

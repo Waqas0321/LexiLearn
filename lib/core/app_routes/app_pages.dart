@@ -1,6 +1,7 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:lexi_learn/core/app_routes/routes.dart';
+import 'package:lexi_learn/faetures/ai/view/ai_screen.dart';
 import 'package:lexi_learn/faetures/alphabets/view/alphabets_screen.dart';
 import 'package:lexi_learn/faetures/animals/view/animals_quiz_screen.dart';
 import 'package:lexi_learn/faetures/animals/view/animals_screen.dart';
@@ -120,6 +121,12 @@ class AppPages {
     GetPage(
         name: AppRoutes.ANIMALSQUIZSCREEN,
         page: () => AnimalsQuizScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+    GetPage(
+        name: AppRoutes.AICHATSCREEN,
+        page: () => AiChatScreen(),
         transition: Transition.fade,
         curve: Curves.linear,
         transitionDuration: const Duration(microseconds: 200)),

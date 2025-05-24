@@ -18,4 +18,5 @@ class AppRoutes{
   static const String COLORSQUIZSCREEN = "/colorsQuizScreen";
   static const String FRUITSQUIZSCREEN = "/fruitsQuizScreen";
   static const String ANIMALSQUIZSCREEN = "/animalsQuizScreen";
+  static const String AICHATSCREEN = "/aIChatScreen";
 }

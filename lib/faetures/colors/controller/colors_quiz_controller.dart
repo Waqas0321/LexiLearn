@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:lexi_learn/core/widgets/custom_toast_show.dart';
 import 'package:lexi_learn/data/providers/firestore_provider.dart';
@@ -8,35 +9,52 @@ import '../../../data/models/colors_question_model.dart';
 class ColorsQuizController extends GetxController {
   FireStoreProvider fireStore = FireStoreProvider();
   ToastClass toast = ToastClass();
+
   var submitted = false.obs;
-  var selectedAnswers = <int, String>{}.obs;
   var questions = <ColorsQuestionModel>[].obs;
   RxBool isLoading = false.obs;
+  RxList<String> shuffledOptions = <String>[].obs;
 
   void loadQuestions(List<ColorsQuestionModel> newQuestions) {
     questions.value = newQuestions;
-    selectedAnswers.clear();
+    final allOptions = newQuestions.expand((q) => q.options).toSet().toList();
+    allOptions.shuffle();
+    shuffledOptions.assignAll(allOptions);
+    matchedAnswers.clear();
     submitted.value = false;
+  }
+
+  double get correctAnswerPercentage {
+    if (questions.isEmpty) return 0.0;
+    int correctCount =
+        questions.where((q) {
+          final matched = matchedAnswers[q.id];
+          return matched != null && matched == q.correctAnswer;
+        }).length;
+    return correctCount / questions.length;
   }
 
   int getScore() {
     int score = 0;
-    for (int i = 0; i < questions.length; i++) {
-      if (selectedAnswers[i] == questions[i].correctAnswer) {
+    for (var q in questions) {
+      if (matchedAnswers[q.id] == q.correctAnswer) {
         score++;
       }
     }
     return score;
   }
 
-  void submit(int quizIndex) {
+  void submit(int quizIndex) async {
     try {
+      isLoading.value = true;
       final data = prepareQuizData(quizIndex);
-      storeQuizData(data);
+      await storeQuizData(data);
       submitted.value = true;
+      isLoading.value = false;
       showQuizResultToast();
       Get.back();
     } catch (e) {
+      isLoading.value = false;
       handleSubmissionError(e);
     }
   }
@@ -45,11 +63,12 @@ class ColorsQuizController extends GetxController {
     return {
       'quizIndex': quizIndex,
       'timestamp': FieldValue.serverTimestamp(),
+      'matchedAnswers': matchedAnswers,
     };
   }
 
-  void storeQuizData(Map<String, dynamic> data) {
-    fireStore.storeDataWithUserID(
+  Future<void> storeQuizData(Map<String, dynamic> data) async {
+    await fireStore.storeDataWithUserID(
       collectionName: "colors_quiz",
       data: data,
       toJson: (data) => data,
@@ -59,26 +78,29 @@ class ColorsQuizController extends GetxController {
   void showQuizResultToast() {
     final score = getScore();
     final totalQuestions = questions.length;
-    toast.showCustomToast(
-      "You scored $score out of $totalQuestions",
-    );
+    toast.showCustomToast("You scored $score out of $totalQuestions");
   }
 
   void handleSubmissionError(dynamic error) {
     log("Error during quiz submission: $error");
-    toast.showCustomToast("An error occurred while submitting the quiz. Please try again.");
+    toast.showCustomToast(
+      "An error occurred while submitting the quiz. Please try again.",
+    );
+  }
+
+  PageController pageController = PageController();
+  var matchedAnswers = <String, String>{}.obs;
+  void matchAnswer(String questionId, String selectedOption) {
+    matchedAnswers[questionId] = selectedOption;
+    matchedAnswers.refresh();
   }
 
 
-  void resetQuiz() {
-    submitted.value = false;
-    selectedAnswers.clear();
-  }
 
   @override
   void onClose() {
     questions.clear();
-    selectedAnswers.clear();
+    matchedAnswers.clear();
     submitted.value = false;
     super.onClose();
   }

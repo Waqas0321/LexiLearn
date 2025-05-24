@@ -182,11 +182,12 @@ class AnimalsScreen extends StatelessWidget {
                     ..shuffle();
 
               return QuestionModel(
-                question: "What is the name of this animal?",
+                question: "What is the name of this Animal?",
                 options: options,
                 correctAnswer: animal.name,
                 displayImage: animal.imagePath,
                 isColorQuestion: true,
+                id: animal.name,
               );
             }).toList();
         questions.shuffle();

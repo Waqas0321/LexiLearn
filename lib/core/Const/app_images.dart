@@ -12,6 +12,7 @@ class AppImages {
   static  get animals => 'animals'.toPng;
   static  get loading => '1_das'.toPng;
   static  get me => 'me'.toJpg;
+  static  get ai => 'artificial-intelligence'.toPng;
 
   /// Fruits
   static  get apple => 'apple'.fruitToPng;

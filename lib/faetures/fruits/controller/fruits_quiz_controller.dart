@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:lexi_learn/core/widgets/custom_toast_show.dart';
 import 'package:lexi_learn/data/providers/firestore_provider.dart';
@@ -10,7 +11,6 @@ class FruitsQuizController extends GetxController {
   ToastClass toast = ToastClass();
 
   var submitted = false.obs;
-  RxMap<String, String> matchedAnswers = <String, String>{}.obs;
   var questions = <QuestionModel>[].obs;
   RxBool isLoading = false.obs;
   RxList<String> shuffledOptions = <String>[].obs;
@@ -88,17 +88,14 @@ class FruitsQuizController extends GetxController {
     );
   }
 
-  void resetQuiz() {
-    submitted.value = false;
-    matchedAnswers.clear();
+  PageController pageController = PageController();
+  var matchedAnswers = <String, String>{}.obs;
+  void matchAnswer(String questionId, String selectedOption) {
+    matchedAnswers[questionId] = selectedOption;
+    matchedAnswers.refresh();
   }
 
-  /// Method to record a match when user drags an answer onto a question
-  void matchAnswer(String questionId, String answer) {
-    if (!submitted.value) {
-      matchedAnswers[questionId] = answer;
-    }
-  }
+
 
   @override
   void onClose() {

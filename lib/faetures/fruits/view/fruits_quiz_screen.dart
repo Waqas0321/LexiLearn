@@ -7,7 +7,6 @@ import 'package:lexi_learn/core/widgets/custom_appbar.dart';
 import 'package:lexi_learn/core/widgets/custom_elevated_button.dart';
 import 'package:lexi_learn/core/widgets/custom_text_widget.dart';
 import '../../../core/Const/app_images.dart';
-import '../../../core/widgets/custom_dragable_tile.dart';
 import '../../../data/models/question_model.dart';
 import '../controller/fruits_quiz_controller.dart';
 
@@ -78,138 +77,155 @@ class FruitsQuizScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Expanded(
-                        child: ListView.builder(
+                        child: PageView.builder(
+                          controller: controller.pageController,
                           itemCount: controller.questions.length,
+                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             final question = controller.questions[index];
                             final matchedAnswer =
                                 controller.matchedAnswers[question.id];
                             final submitted = controller.submitted.value;
-                            Color backgroundColor = AppColors.white;
-                            Color borderColor = AppColors.brown;
-                            Color textColor = AppColors.black;
-                            if (matchedAnswer != null) {
-                              if (matchedAnswer == question.correctAnswer) {
-                                backgroundColor = AppColors.green;
-                                borderColor = AppColors.green;
-                                textColor = AppColors.white;
-                              } else {
-                                backgroundColor = AppColors.red;
-                                borderColor = AppColors.red;
-                                textColor = AppColors.white;
-                              }
-                            } else {
-                              backgroundColor = AppColors.white;
-                              textColor = AppColors.black;
-                            }
-                            return Container(
-                              margin: const EdgeInsets.only(bottom: 16),
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                color: AppColors.orange2,
-                                borderRadius: BorderRadius.circular(12),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.blackish,
-                                    blurRadius: 10,
-                                    offset: Offset(0, 5),
-                                  ),
-                                ],
+
+                            return Padding(
+                              padding: appSizes.getCustomPadding(
+                                top: 0,
+                                bottom: 0,
                               ),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   if (question.displayImage != null)
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(12),
                                       child: Image.asset(
                                         question.displayImage!,
-                                        height: 100,
-                                        fit: BoxFit.cover,
+                                        height: 160,
+                                        width: double.infinity,
+                                        fit: BoxFit.fitHeight,
                                       ),
                                     ),
-                                  Gap(10),
-                                  DragTarget<String>(
-                                    builder: (
-                                      context,
-                                      candidateData,
-                                      rejectedData,
-                                    ) {
-                                      return Container(
-                                        height: 50,
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: backgroundColor,
-                                          borderRadius: BorderRadius.circular(
-                                            12,
+                                  Gap(20),
+                                  Obx(() {
+                                    final matchedAnswer =
+                                        controller.matchedAnswers[question.id];
+                                    final submitted =
+                                        controller.submitted.value;
+                                    return GridView.builder(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount: question.options.length,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 12,
+                                            mainAxisSpacing: 12,
+                                            childAspectRatio: 1.5,
                                           ),
-                                          border: Border.all(
-                                            color: borderColor,
+                                      itemBuilder: (context, index) {
+                                        final option = question.options[index];
+                                        final bool isSelected =
+                                            matchedAnswer == option;
+                                        final bool isCorrect =
+                                            option == question.correctAnswer;
+
+                                        Color backgroundColor = AppColors.white;
+                                        Color borderColor = AppColors.brown;
+                                        Color textColor = AppColors.black;
+
+                                        if (submitted) {
+                                          if (isCorrect) {
+                                            backgroundColor = AppColors.green;
+                                            textColor = AppColors.white;
+                                          } else if (isSelected && !isCorrect) {
+                                            backgroundColor = AppColors.red;
+                                            textColor = AppColors.white;
+                                          }
+                                        } else if (isSelected) {
+                                          backgroundColor = AppColors.orange2;
+                                          if (isCorrect) {
+                                            backgroundColor = AppColors.green;
+                                            textColor = AppColors.white;
+                                            borderColor = AppColors.green;
+                                          }
+                                        }
+
+                                        return GestureDetector(
+                                          onTap: () {
+                                            if (!submitted) {
+                                              controller.matchAnswer(
+                                                question.id!,
+                                                option,
+                                              );
+                                            }
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.all(14),
+                                            decoration: BoxDecoration(
+                                              color: backgroundColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.all(
+                                                color: borderColor,
+                                              ),
+                                            ),
+                                            child: Center(
+                                              child: CustomTextWidget(
+                                                text: option,
+                                                textColor: textColor,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: CustomTextWidget(
-                                          text:
-                                              matchedAnswer ??
-                                              "Drop answer here",
-                                          textColor: textColor,
-                                        ),
-                                      );
-                                    },
-                                    onWillAcceptWithDetails:
-                                        (data) => !submitted,
-                                    onAcceptWithDetails: (details) {
-                                      if (!submitted) {
-                                        controller.matchAnswer(
-                                          question.id!,
-                                          details.data,
                                         );
-                                      }
-                                    },
+                                      },
+                                    );
+                                  }),
+                                  Gap(appSizes.getHeightPercentage(7)),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      if (index > 0)
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.pageController
+                                                .previousPage(
+                                                  duration: const Duration(
+                                                    milliseconds: 300,
+                                                  ),
+                                                  curve: Curves.ease,
+                                                );
+                                          },
+                                          child: Icon(
+                                            Icons.arrow_back_ios,
+                                            size: 36,
+                                            color: AppColors.white,
+                                          ),
+                                        ),
+                                      if (index <
+                                          controller.questions.length - 1)
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.pageController.nextPage(
+                                              duration: const Duration(
+                                                milliseconds: 300,
+                                              ),
+                                              curve: Curves.ease,
+                                            );
+                                          },
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: AppColors.white,
+                                            size: 36,
+                                          ),
+                                        ),
+                                    ],
                                   ),
                                 ],
                               ),
                             );
                           },
-                        ),
-                      ),
-                      Gap(20),
-                      SizedBox(
-                        height: 110,
-                        child: GridView.count(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                          childAspectRatio: 3.5,
-                          physics: NeverScrollableScrollPhysics(),
-                          children:
-                              controller.shuffledOptions.map((answer) {
-                                final isMatched = controller
-                                    .matchedAnswers
-                                    .values
-                                    .contains(answer);
-                                return Draggable<String>(
-                                  data: answer,
-                                  feedback: CustomDraggableTile(text: answer),
-                                  childWhenDragging: Opacity(
-                                    opacity: 0.4,
-                                    child: CustomDraggableTile(text: answer),
-                                  ),
-                                  maxSimultaneousDrags:
-                                      isMatched || controller.submitted.value
-                                          ? 0
-                                          : 1,
-                                  child:
-                                      isMatched
-                                          ? Opacity(
-                                            opacity: 0.3,
-                                            child: CustomDraggableTile(
-                                              text: answer,
-                                            ),
-                                          )
-                                          : CustomDraggableTile(text: answer),
-                                );
-                              }).toList(),
                         ),
                       ),
                     ],
@@ -219,7 +235,7 @@ class FruitsQuizScreen extends StatelessWidget {
             ),
             Gap(8),
             Padding(
-              padding: appSizes.getCustomPadding(top: 0, bottom: 0),
+              padding: appSizes.getCustomPadding(top: 0, bottom: 3),
               child: CustomElevatedButton(
                 isLoading: controller.isLoading.value,
                 onPress: () {

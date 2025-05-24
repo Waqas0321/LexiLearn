@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:lexi_learn/faetures/ai/controller/ai_controller.dart';
 import 'package:lexi_learn/faetures/alphabets/controller/alphabets_controller.dart';
 import 'package:lexi_learn/faetures/animals/controller/animals_controller.dart';
 import 'package:lexi_learn/faetures/animals/controller/animals_quiz_controller.dart';
@@ -70,6 +71,9 @@ class InitialBindings extends Bindings {
 
     Get.put(AnimalsQuizController());
     Get.lazyPut(() => AnimalsQuizController());
+
+    Get.put(AiChatController());
+    Get.lazyPut(() => AiChatController());
 
   }
 }

@@ -170,9 +170,16 @@ class ColorsScreen extends StatelessWidget {
         if (start >= allColors.length) return;
         final end = min(start + groupSize, allColors.length);
         final group = allColors.sublist(start, end);
-        final questions = group.map((color) {
-          final otherOptions = [...group]..remove(color)..shuffle();
-          final options = ([color.name] + otherOptions.take(3).map((e) => e.name).toList())..shuffle();
+        final questions =
+        group.map((color) {
+          final otherOptions =
+          [...group]
+            ..remove(color)
+            ..shuffle();
+          final options =
+          ([color.name] +
+              otherOptions.take(3).map((e) => e.name).toList())
+            ..shuffle();
 
           return ColorsQuestionModel(
             question: "What is the name of this color?",
@@ -180,6 +187,7 @@ class ColorsScreen extends StatelessWidget {
             correctAnswer: color.name,
             displayColor: color.color,
             isColorQuestion: true,
+            id: color.name
           );
         }).toList();
         questions.shuffle();
