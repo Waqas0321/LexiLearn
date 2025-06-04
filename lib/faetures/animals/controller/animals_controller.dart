@@ -1,34 +1,34 @@
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 import '../../../core/Const/app_images.dart';
-import '../../../data/models/fruit_model.dart';
+import '../../../data/models/animals_model.dart';
 import '../../../data/providers/firestore_provider.dart';
 
 class AnimalsController extends GetxController{
   FireStoreProvider fireStore = FireStoreProvider();
   final FlutterTts tts = FlutterTts();
 
-  var animals = <FruitModel>[
-    FruitModel(name: 'Cat', imagePath: AppImages.cat),           // Home animal
-    FruitModel(name: 'Sheep', imagePath: AppImages.sheep),        // Home animal
-    FruitModel(name: 'Cow', imagePath: AppImages.cow),          // Home animal
-    FruitModel(name: 'Goat', imagePath: AppImages.goat),
-    FruitModel(name: 'Lion', imagePath: AppImages.lion),
-    FruitModel(name: 'Tiger', imagePath: AppImages.tiger),
-    FruitModel(name: 'Elephant', imagePath: AppImages.elephant),
-    FruitModel(name: 'Giraffe', imagePath: AppImages.giraffe),
-    FruitModel(name: 'Zebra', imagePath: AppImages.zebra),
-    FruitModel(name: 'Monkey', imagePath: AppImages.monkey),
-    FruitModel(name: 'Kangaroo', imagePath: AppImages.kangaroo),
-    FruitModel(name: 'Panda', imagePath: AppImages.panda),
-    FruitModel(name: 'Bear', imagePath: AppImages.bear),
-    FruitModel(name: 'Wolf', imagePath: AppImages.wolf),
-    FruitModel(name: 'Fox', imagePath: AppImages.fox),
-    FruitModel(name: 'Rabbit', imagePath: AppImages.rabbit),
-    FruitModel(name: 'Deer', imagePath: AppImages.deer),
-    FruitModel(name: 'Dog', imagePath: AppImages.dog),
-    FruitModel(name: 'Horse', imagePath: AppImages.horse),
-    FruitModel(name: 'Leopard', imagePath: AppImages.leopard),
+  var animals = <AnimalsModel>[
+    AnimalsModel(name: 'Cat', imagePath: AppImages.cat),
+    AnimalsModel(name: 'Sheep', imagePath: AppImages.sheep),
+    AnimalsModel(name: 'Cow', imagePath: AppImages.cow),
+    AnimalsModel(name: 'Goat', imagePath: AppImages.goat),
+    AnimalsModel(name: 'Lion', imagePath: AppImages.lion),
+    AnimalsModel(name: 'Tiger', imagePath: AppImages.tiger),
+    AnimalsModel(name: 'Elephant', imagePath: AppImages.elephant),
+    AnimalsModel(name: 'Giraffe', imagePath: AppImages.giraffe),
+    AnimalsModel(name: 'Zebra', imagePath: AppImages.zebra),
+    AnimalsModel(name: 'Monkey', imagePath: AppImages.monkey),
+    AnimalsModel(name: 'Kangaroo', imagePath: AppImages.kangaroo),
+    AnimalsModel(name: 'Panda', imagePath: AppImages.panda),
+    AnimalsModel(name: 'Bear', imagePath: AppImages.bear),
+    AnimalsModel(name: 'Wolf', imagePath: AppImages.wolf),
+    AnimalsModel(name: 'Fox', imagePath: AppImages.fox),
+    AnimalsModel(name: 'Rabbit', imagePath: AppImages.rabbit),
+    AnimalsModel(name: 'Deer', imagePath: AppImages.deer),
+    AnimalsModel(name: 'Dog', imagePath: AppImages.dog),
+    AnimalsModel(name: 'Horse', imagePath: AppImages.horse),
+    AnimalsModel(name: 'Leopard', imagePath: AppImages.leopard),
   ].obs;
 
   var currentIndex = 0.obs;

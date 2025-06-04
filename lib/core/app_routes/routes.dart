@@ -8,12 +8,16 @@ class AppRoutes{
   static const String HOMESCREEN = "/homeScreen";
   static const String PROFILESCREEN = "/profileScreen";
   static const String ALPHABETSSCREEN = "/alphabetsScreen";
+  static const String ALPHABETSQUIZSCREEN = "/alphabetsquizScreen";
+  static const String ALPHABETDETAILSSCREEN = "/alphabetdetailScreen";
   static const String NUMBERSSCREEN = "/numbersScreen";
   static const String COLORSSCREEN = "/colorsScreen";
   static const String FRUITSSCREEN = "/fruitsScreen";
   static const String ETHICSSCREEN = "/ethicsScreen";
   static const String ANIMALSSCREEN = "/animalsScreen";
   static const String BODYPARTSSCREEN = "/bodyPartsScreen";
+  static const String BODYPARTSQUIZSCREEN = "/bodyPartsQuizScreen";
+  static const String BODYPARTSDETAILSCREEN = "/bodyPartsDetailScreen";
 
   static const String COLORSQUIZSCREEN = "/colorsQuizScreen";
   static const String FRUITSQUIZSCREEN = "/fruitsQuizScreen";

@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'package:lexi_learn/faetures/ai/controller/ai_controller.dart';
 import 'package:lexi_learn/faetures/alphabets/controller/alphabets_controller.dart';
+import 'package:lexi_learn/faetures/alphabets/controller/alphabets_quiz_controller.dart';
 import 'package:lexi_learn/faetures/animals/controller/animals_controller.dart';
 import 'package:lexi_learn/faetures/animals/controller/animals_quiz_controller.dart';
 import 'package:lexi_learn/faetures/auth/forget_password/controller/forget_password_controller.dart';
 import 'package:lexi_learn/faetures/body_parts/controller/body_parts_controller.dart';
+import 'package:lexi_learn/faetures/body_parts/controller/bodyparts_quiz_controller.dart';
 import 'package:lexi_learn/faetures/colors/controller/colors_controller.dart';
 import 'package:lexi_learn/faetures/colors/controller/colors_quiz_controller.dart';
 import 'package:lexi_learn/faetures/edthics/controller/ethics_controller.dart';
@@ -74,6 +76,14 @@ class InitialBindings extends Bindings {
 
     Get.put(AiChatController());
     Get.lazyPut(() => AiChatController());
+
+    Get.put(AlphabetsQuizController());
+    Get.lazyPut(() => AlphabetsQuizController());
+
+
+    Get.put(BodypartsQuizController());
+    Get.lazyPut(() => BodypartsQuizController());
+
 
   }
 }

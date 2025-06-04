@@ -5,6 +5,8 @@ extension ImagePathExtensions on String {
   String get animalToPng => 'assets/animals/$this.png';
   String get alphabetsToPng => 'assets/alphabets/$this.png';
   String get alphabetsThingsToPng => 'assets/alphabets/things/$this.png';
+  String get bodyPartsToPng => 'assets/bodyparts/$this.png';
+  String get thingsToPng => 'assets/alphabets/things/$this.png';
 
   /// Converts the string to a JPG image path.
   String get toJpg => 'assets/images/$this.jpg';

@@ -2,11 +2,15 @@ import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:lexi_learn/core/app_routes/routes.dart';
 import 'package:lexi_learn/faetures/ai/view/ai_screen.dart';
+import 'package:lexi_learn/faetures/alphabets/view/alphabet_detail_screen.dart';
+import 'package:lexi_learn/faetures/alphabets/view/alphabets_quiz_screen.dart';
 import 'package:lexi_learn/faetures/alphabets/view/alphabets_screen.dart';
 import 'package:lexi_learn/faetures/animals/view/animals_quiz_screen.dart';
 import 'package:lexi_learn/faetures/animals/view/animals_screen.dart';
 import 'package:lexi_learn/faetures/auth/forget_password/view/forget_password_screen.dart';
 import 'package:lexi_learn/faetures/body_parts/view/body_parts_screen.dart';
+import 'package:lexi_learn/faetures/body_parts/view/bodyparts_detail_screen.dart';
+import 'package:lexi_learn/faetures/body_parts/view/bodyparts_quiz_screen.dart';
 import 'package:lexi_learn/faetures/colors/view/colors_screen.dart';
 import 'package:lexi_learn/faetures/colors/view/colors_quiz_screen.dart';
 import 'package:lexi_learn/faetures/edthics/view/ethics_screen.dart';
@@ -127,6 +131,41 @@ class AppPages {
     GetPage(
         name: AppRoutes.AICHATSCREEN,
         page: () => AiChatScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+
+    GetPage(
+        name: AppRoutes.AICHATSCREEN,
+        page: () => AlphabetDetailScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+
+    GetPage(
+        name: AppRoutes.ALPHABETSQUIZSCREEN,
+        page: () => AlphabetsQuizScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+
+    GetPage(
+        name: AppRoutes.ALPHABETSQUIZSCREEN,
+        page: () => AlphabetsQuizScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+
+    GetPage(
+        name: AppRoutes.BODYPARTSDETAILSCREEN,
+        page: () => BodypartsDetailScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+
+    GetPage(
+        name: AppRoutes.BODYPARTSQUIZSCREEN,
+        page: () => BodypartsQuizScreen(),
         transition: Transition.fade,
         curve: Curves.linear,
         transitionDuration: const Duration(microseconds: 200)),
