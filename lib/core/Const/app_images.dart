@@ -6,10 +6,10 @@ class AppImages {
   static  get alphabets => 'alphabets'.toPng;
   static  get numbers => 'numbers'.toPng;
   static  get fruits => 'fruits'.toPng;
-  static  get ethics => 'ethics'.toPng;
+  static  get animals => 'ethics'.toPng;
   static  get colors => 'colors'.toPng;
   static  get bodyParts => 'body_parts'.toPng;
-  static  get animals => 'animals'.toPng;
+  static  get ethics => 'animals'.toPng;
   static  get loading => '1_das'.toPng;
   static  get me => 'me'.toJpg;
   static  get ai => 'artificial-intelligence'.toPng;
@@ -106,35 +106,66 @@ class AppImages {
   static  get thumb => 'thumb'.bodyPartsToPng;
 
 
-  ///Things
+  ///A Things
+  static  get aeroplane => 'aeroplane'. alphabetsThingsToPng;
+  static  get ball => 'ball'. alphabetsThingsToPng;
+  static  get cat2 => 'cat'. alphabetsThingsToPng;
+  static  get duck => 'rubber-duck'. alphabetsThingsToPng;
+  static  get egg => 'egg'. alphabetsThingsToPng;
+  static  get fish => 'fish'. alphabetsThingsToPng;
+  static  get goat2 => 'goat'. alphabetsThingsToPng;
+  static  get hen => 'hen'. alphabetsThingsToPng;
+  static  get ice_cream => 'ice-cream'. alphabetsThingsToPng;
+  static  get juice => 'lemon-juice'. alphabetsThingsToPng;
+  static  get keyChain => 'key-chain'. alphabetsThingsToPng;
+  static  get lion2 => 'lion'. alphabetsThingsToPng;
+  static  get monkey2 => 'monkey'. alphabetsThingsToPng;
+  static  get nest => 'nest'. alphabetsThingsToPng;
+  static  get orange2 => 'orange'. alphabetsThingsToPng;
+  static  get parrot => 'parrot'. alphabetsThingsToPng;
+  static  get quilt => 'quilt'. alphabetsThingsToPng;
+  static  get rose => 'red-rose'. alphabetsThingsToPng;
+  static  get sun => 'sun'. alphabetsThingsToPng;
+  static  get tree => 'tree'. alphabetsThingsToPng;
+  static  get umbrella => 'umberlla'. alphabetsThingsToPng;
+  static  get van => 'van'. alphabetsThingsToPng;
+  static  get water => 'water-bottle'. alphabetsThingsToPng;
+  static  get xRay => 'x-ray'. alphabetsThingsToPng;
+  static  get yoyo => 'yoyo-toy'. alphabetsThingsToPng;
+  static  get zebra2 => 'zebra'. alphabetsThingsToPng;
 
-  static  get aeroplane => 'aeroplane'.thingsToPng;
-  static  get ball => 'ball'.thingsToPng;
-  static  get cat2 => 'cat'.thingsToPng;
-  static  get duck => 'rubber-duck'.thingsToPng;
-  static  get egg => 'egg'.thingsToPng;
-  static  get fish => 'fish'.thingsToPng;
-  static  get goat2 => 'goat'.thingsToPng;
-  static  get hen => 'hen'.thingsToPng;
-  static  get ice_cream => 'ice_cream'.thingsToPng;
-  static  get juice => 'lemon_juice'.thingsToPng;
-  static  get keyChain => 'key_chain'.thingsToPng;
-  static  get lion2 => 'lion'.thingsToPng;
-  static  get monkey2 => 'monkey'.thingsToPng;
-  static  get nest => 'nest'.thingsToPng;
-  static  get orange2 => 'orange'.thingsToPng;
-  static  get parrot => 'parrot'.thingsToPng;
-  static  get quilt => 'quilt'.thingsToPng;
-  static  get rose => 'red_rose'.thingsToPng;
-  static  get sun => 'sun'.thingsToPng;
-  static  get tree => 'tree'.thingsToPng;
-  static  get umbrella => 'umbrella'.thingsToPng;
-  static  get van => 'van'.thingsToPng;
-  static  get water => 'water_bottle'.thingsToPng;
-  static  get xRay => 'x_ray'.thingsToPng;
-  static  get yoyo => 'yoyo_toy'.thingsToPng;
-  static  get zebra2 => 'zebra'.thingsToPng;
 
+  static  get one => 'one'.countingToPng;
+  static  get two => 'two'.countingToPng;
+  static  get three => 'three'.countingToPng;
+  static  get four => 'four'.countingToPng;
+  static  get five => 'five'.countingToPng;
+  static  get six => 'six'.countingToPng;
+  static  get seven => 'seven'.countingToPng;
+  static  get eight => 'eight'.countingToPng;
+  static  get nine => 'nine'.countingToPng;
+  static  get ten => 'ten'.countingToPng;
+  static  get eleven => 'number-11'.countingToPng;
+  static  get twelve => 'number-12'.countingToPng;
+  static  get thirteen => 'number-13'.countingToPng;
+  static  get fourteen => 'number-14'.countingToPng;
+  static  get fifteen => 'number-15'.countingToPng;
+  static  get sixteen => 'number-16'.countingToPng;
+  static  get seventeen => '17'.countingToPng;
+  static  get eighteen => 'number-18'.countingToPng;
+  static  get nineteen => 'number-19'.countingToPng;
+  static  get twenty => 'twenty'.countingToPng;
+
+  static  get onePic => '1-Photoroom'.countingThingsToPng;
+  static  get twoPic => '2-Photoroom'.countingThingsToPng;
+  static  get threePic => '3-Photoroom'.countingThingsToPng;
+  static  get fourPic => '4-Photoroom'.countingThingsToPng;
+  static  get fivePic => '5-Photoroom'.countingThingsToPng;
+  static  get sixPic => '6-Photoroom'.countingThingsToPng;
+  static  get sevenPic => '7-Photoroom'.countingThingsToPng;
+  static  get eightPic => '8-Photoroom'.countingThingsToPng;
+  static  get ninePic => '9-Photoroom'.countingThingsToPng;
+  static  get tenPic => '10-Photoroom'.countingThingsToPng;
 
 
 

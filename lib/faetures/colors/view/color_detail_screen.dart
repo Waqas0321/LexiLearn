@@ -52,10 +52,17 @@ class ColorDetailScreen extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: controller.previous,
-                                  child: Icon(
-                                    Icons.arrow_back_ios,
-                                    color: AppColors.blackish,
-                                    size: 28,
+                                  child: Container(
+                                    padding: EdgeInsets.all(6),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.blackish,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Icon(
+                                      Icons.arrow_back_ios_new,
+                                      color: AppColors.white,
+                                      size: 28,
+                                    ),
                                   ),
                                 ),
                                 Icon(
@@ -65,10 +72,17 @@ class ColorDetailScreen extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: controller.next,
-                                  child: Icon(
-                                    Icons.arrow_forward_ios_outlined,
-                                    color: AppColors.blackish,
-                                    size: 28,
+                                  child: Container(
+                                    padding: EdgeInsets.all(6),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.blackish,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: AppColors.white,
+                                      size: 28,
+                                    ),
                                   ),
                                 ),
                               ],

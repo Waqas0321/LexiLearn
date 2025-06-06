@@ -4,16 +4,15 @@ import 'package:get/get.dart';
 import 'package:lexi_learn/core/Const/app_colors.dart';
 import 'package:lexi_learn/core/utils/app_sizes.dart';
 import 'package:lexi_learn/core/widgets/custom_appbar.dart';
-import 'package:lexi_learn/core/widgets/custom_text_widget.dart';
+import 'package:lexi_learn/faetures/numbers/controller/numbers_controller.dart';
 import '../../../core/Const/app_images.dart';
 import '../../../core/helpers/bottom_curve_clipper.dart';
-import '../controller/animals_controller.dart';
 
-class AnimalDetailScreen extends StatelessWidget {
-  final AnimalsController controller = Get.find();
+class NumberDetailScreen extends StatelessWidget {
+  final NumbersController controller = Get.find();
   final AppSizes appSizes = AppSizes();
 
-  AnimalDetailScreen({super.key});
+  NumberDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +31,8 @@ class AnimalDetailScreen extends StatelessWidget {
               ),
             ),
             child: Obx(() {
-              final currentAnimal =
-                  controller.animals[controller.currentIndex.value];
+              final currentAlphabet =
+                  controller.numbers[controller.currentIndex.value];
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -66,8 +65,8 @@ class AnimalDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Image.asset(
-                                  currentAnimal.imagePath,
-                                  height: 130,
+                                  currentAlphabet.imagePath,
+                                  height: 90,
                                 ),
                                 GestureDetector(
                                   onTap: controller.next,
@@ -87,13 +86,12 @@ class AnimalDetailScreen extends StatelessWidget {
                               ],
                             ),
                             Spacer(),
-                            CustomTextWidget(
-                              text: currentAnimal.name.toUpperCase(),
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              textColor: AppColors.orange,
+                            Image.asset(
+                              currentAlphabet.referenceImagePath,
+                              height: 130,
+                              width: 130,
                             ),
-                            Gap(60),
+                            Gap(30),
                             GestureDetector(
                               onTap: controller.reListen,
                               child: Icon(
@@ -102,7 +100,7 @@ class AnimalDetailScreen extends StatelessWidget {
                                 size: 40,
                               ),
                             ),
-                            Gap(45),
+                            Gap(20),
                           ],
                         ),
                       ),

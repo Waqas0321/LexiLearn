@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:lexi_learn/core/Const/app_colors.dart';
 import 'package:lexi_learn/core/utils/app_sizes.dart';
 import 'package:lexi_learn/core/widgets/custom_appbar.dart';
-import 'package:lexi_learn/core/widgets/custom_text_widget.dart';
 import 'package:lexi_learn/faetures/alphabets/controller/alphabets_controller.dart';
 import '../../../core/Const/app_images.dart';
 import '../../../core/helpers/bottom_curve_clipper.dart';
@@ -33,7 +32,7 @@ class AlphabetDetailScreen extends StatelessWidget {
             ),
             child: Obx(() {
               final currentAlphabet =
-              controller.alphabet[controller.currentIndex.value];
+                  controller.alphabet[controller.currentIndex.value];
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -52,34 +51,47 @@ class AlphabetDetailScreen extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: controller.previous,
-                                  child: Icon(
-                                    Icons.arrow_back_ios,
-                                    color: AppColors.blackish,
-                                    size: 28,
+                                  child: Container(
+                                    padding: EdgeInsets.all(6),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.blackish,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Icon(
+                                      Icons.arrow_back_ios_new,
+                                      color: AppColors.white,
+                                      size: 28,
+                                    ),
                                   ),
                                 ),
                                 Image.asset(
                                   currentAlphabet.imagePath,
-                                  height: 130,
+                                  height: 90,
                                 ),
                                 GestureDetector(
                                   onTap: controller.next,
-                                  child: Icon(
-                                    Icons.arrow_forward_ios_outlined,
-                                    color: AppColors.blackish,
-                                    size: 28,
+                                  child: Container(
+                                    padding: EdgeInsets.all(6),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.blackish,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: AppColors.white,
+                                      size: 28,
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                             Spacer(),
-                            CustomTextWidget(
-                              text: currentAlphabet.name.toUpperCase(),
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              textColor: AppColors.orange,
+                            Image.asset(
+                              currentAlphabet.referenceImagePath,
+                              height: 130,
+                              width: 130,
                             ),
-                            Gap(60),
+                            Gap(30),
                             GestureDetector(
                               onTap: controller.reListen,
                               child: Icon(
@@ -88,7 +100,7 @@ class AlphabetDetailScreen extends StatelessWidget {
                                 size: 40,
                               ),
                             ),
-                            Gap(45),
+                            Gap(20),
                           ],
                         ),
                       ),

@@ -71,7 +71,7 @@ class AlphabetsQuizScreen extends StatelessWidget {
               );
             }),
             Obx(
-                  () => Expanded(
+              () => Expanded(
                 child: Padding(
                   padding: appSizes.getCustomPadding(),
                   child: Column(
@@ -84,7 +84,7 @@ class AlphabetsQuizScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             final question = controller.questions[index];
                             final matchedAnswer =
-                            controller.matchedAnswers[question.id];
+                                controller.matchedAnswers[question.id];
                             final submitted = controller.submitted.value;
                             return Padding(
                               padding: appSizes.getCustomPadding(
@@ -106,22 +106,28 @@ class AlphabetsQuizScreen extends StatelessWidget {
                                     ),
                                   Gap(20),
                                   Obx(() {
-                                    final matchedAnswer = controller.matchedAnswers[question.id];
-                                    final submitted = controller.submitted.value;
+                                    final matchedAnswer =
+                                        controller.matchedAnswers[question.id];
+                                    final submitted =
+                                        controller.submitted.value;
                                     return GridView.builder(
                                       shrinkWrap: true,
-                                      physics: const NeverScrollableScrollPhysics(),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
                                       itemCount: question.options.length,
-                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 12,
-                                        mainAxisSpacing: 12,
-                                        childAspectRatio: 1.5,
-                                      ),
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 12,
+                                            mainAxisSpacing: 12,
+                                            childAspectRatio: 1.5,
+                                          ),
                                       itemBuilder: (context, index) {
                                         final option = question.options[index];
-                                        final bool isSelected = matchedAnswer == option;
-                                        final bool isCorrect = option == question.correctAnswer;
+                                        final bool isSelected =
+                                            matchedAnswer == option;
+                                        final bool isCorrect =
+                                            option == question.correctAnswer;
 
                                         Color backgroundColor = AppColors.white;
                                         Color borderColor = AppColors.brown;
@@ -147,15 +153,21 @@ class AlphabetsQuizScreen extends StatelessWidget {
                                         return GestureDetector(
                                           onTap: () {
                                             if (!submitted) {
-                                              controller.matchAnswer(question.id!, option);
+                                              controller.matchAnswer(
+                                                question.id!,
+                                                option,
+                                              );
                                             }
                                           },
                                           child: Container(
                                             padding: const EdgeInsets.all(14),
                                             decoration: BoxDecoration(
                                               color: backgroundColor,
-                                              borderRadius: BorderRadius.circular(12),
-                                              border: Border.all(color: borderColor),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.all(
+                                                color: borderColor,
+                                              ),
                                             ),
                                             child: Center(
                                               child: CustomTextWidget(
@@ -171,23 +183,33 @@ class AlphabetsQuizScreen extends StatelessWidget {
                                   Gap(appSizes.getHeightPercentage(7)),
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        index > 0
+                                            ? MainAxisAlignment.spaceBetween
+                                            : MainAxisAlignment.end,
                                     children: [
                                       if (index > 0)
                                         GestureDetector(
                                           onTap: () {
                                             controller.pageController
                                                 .previousPage(
-                                              duration: const Duration(
-                                                milliseconds: 300,
-                                              ),
-                                              curve: Curves.ease,
-                                            );
+                                                  duration: const Duration(
+                                                    milliseconds: 300,
+                                                  ),
+                                                  curve: Curves.ease,
+                                                );
                                           },
-                                          child: Icon(
-                                            Icons.arrow_back_ios,
-                                            size: 36,
-                                            color: AppColors.white,
+                                          child: Container(
+                                            padding: EdgeInsets.all(6),
+                                            decoration: BoxDecoration(
+                                              color: AppColors.blackish,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: Icon(
+                                              Icons.arrow_back_ios_new,
+                                              size: 28,
+                                              color: AppColors.white,
+                                            ),
                                           ),
                                         ),
                                       if (index <
@@ -201,10 +223,18 @@ class AlphabetsQuizScreen extends StatelessWidget {
                                               curve: Curves.ease,
                                             );
                                           },
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: AppColors.black,
-                                            size: 36,
+                                          child: Container(
+                                            padding: EdgeInsets.all(6),
+                                            decoration: BoxDecoration(
+                                              color: AppColors.blackish,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: AppColors.white,
+                                              size: 28,
+                                            ),
                                           ),
                                         ),
                                     ],
@@ -224,7 +254,7 @@ class AlphabetsQuizScreen extends StatelessWidget {
             Padding(
               padding: appSizes.getCustomPadding(top: 0, bottom: 3),
               child: Obx(
-                    () => CustomElevatedButton(
+                () => CustomElevatedButton(
                   isLoading: controller.isLoading.value,
                   onPress: () {
                     controller.submit(quizIndex);

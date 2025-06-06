@@ -1,13 +1,11 @@
-class AlphabetModel {
+class CountingModel {
   final String name;
   final String imagePath;
   final String referenceImagePath;
-  final String referenceText;
 
-  AlphabetModel({
+  CountingModel({
     required this.name,
     required this.imagePath,
     required this.referenceImagePath,
-    required this.referenceText,
   });
 }

@@ -13,6 +13,7 @@ import 'package:lexi_learn/faetures/edthics/controller/ethics_controller.dart';
 import 'package:lexi_learn/faetures/fruits/controller/fruits_controller.dart';
 import 'package:lexi_learn/faetures/fruits/controller/fruits_quiz_controller.dart';
 import 'package:lexi_learn/faetures/numbers/controller/numbers_controller.dart';
+import 'package:lexi_learn/faetures/numbers/controller/numbers_quiz_controller.dart';
 import 'package:lexi_learn/faetures/profile/controller/profile_controller.dart';
 import 'package:lexi_learn/faetures/splash/pages/loading/controller/loading_controller.dart';
 import '../../faetures/auth/sign_up/controller/signup_controller.dart';
@@ -84,6 +85,11 @@ class InitialBindings extends Bindings {
     Get.put(BodypartsQuizController());
     Get.lazyPut(() => BodypartsQuizController());
 
+    Get.put(NumbersController());
+    Get.lazyPut(() => NumbersController());
+
+    Get.put(NumbersQuizController());
+    Get.lazyPut(() => NumbersQuizController());
 
   }
 }

@@ -5,16 +5,16 @@ import 'package:lexi_learn/core/Const/app_colors.dart';
 import 'package:lexi_learn/core/utils/app_sizes.dart';
 import 'package:lexi_learn/core/widgets/custom_appbar.dart';
 import 'package:lexi_learn/core/widgets/custom_elevated_button.dart';
-import 'package:lexi_learn/core/widgets/custom_text_widget.dart';
+import 'package:lexi_learn/faetures/numbers/controller/numbers_quiz_controller.dart';
 import '../../../core/Const/app_images.dart';
+import '../../../core/widgets/custom_text_widget.dart';
 import '../../../data/models/question_model.dart';
-import '../controller/animals_quiz_controller.dart';
 
-class AnimalsQuizScreen extends StatelessWidget {
-  final AnimalsQuizController controller = Get.find();
+class NumbersQuizScreen extends StatelessWidget {
+  final NumbersQuizController controller = Get.find();
   final AppSizes appSizes = AppSizes();
 
-  AnimalsQuizScreen({super.key});
+  NumbersQuizScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -183,9 +183,7 @@ class AnimalsQuizScreen extends StatelessWidget {
                                   Gap(appSizes.getHeightPercentage(7)),
                                   Row(
                                     mainAxisAlignment:
-                                        index == 0
-                                            ? MainAxisAlignment.end
-                                            : MainAxisAlignment.spaceBetween,
+                                    index > 0?MainAxisAlignment.spaceBetween:MainAxisAlignment.end,
                                     children: [
                                       if (index > 0)
                                         GestureDetector(
@@ -199,11 +197,11 @@ class AnimalsQuizScreen extends StatelessWidget {
                                                 );
                                           },
                                           child: Container(
-                                            padding: EdgeInsets.all(6),
+                                            padding:EdgeInsets.all(6),
                                             decoration: BoxDecoration(
                                               color: AppColors.blackish,
                                               borderRadius:
-                                                  BorderRadius.circular(8),
+                                              BorderRadius.circular(8),
                                             ),
                                             child: Icon(
                                               Icons.arrow_back_ios_new,
@@ -224,7 +222,7 @@ class AnimalsQuizScreen extends StatelessWidget {
                                             );
                                           },
                                           child: Container(
-                                            padding: EdgeInsets.all(6),
+                                            padding:EdgeInsets.all(6),
                                             decoration: BoxDecoration(
                                               color: AppColors.blackish,
                                               borderRadius:

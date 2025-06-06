@@ -71,6 +71,8 @@ flutter:
      - assets/alphabets/
      - assets/alphabets/things/
      - assets/bodyparts/
+     - assets/numbers/
+     - assets/numbers/things/
 
   #   - images/a_dot_ham.jpeg
 

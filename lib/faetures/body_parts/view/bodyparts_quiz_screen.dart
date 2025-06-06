@@ -184,7 +184,7 @@ class BodypartsQuizScreen extends StatelessWidget {
                                   Gap(appSizes.getHeightPercentage(7)),
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    index == 0? MainAxisAlignment.end:MainAxisAlignment.spaceBetween,
                                     children: [
                                       if (index > 0)
                                         GestureDetector(
@@ -197,10 +197,18 @@ class BodypartsQuizScreen extends StatelessWidget {
                                               curve: Curves.ease,
                                             );
                                           },
-                                          child: Icon(
-                                            Icons.arrow_back_ios,
-                                            size: 36,
-                                            color: AppColors.white,
+                                          child: Container(
+                                            padding:EdgeInsets.all(6),
+                                            decoration: BoxDecoration(
+                                              color: AppColors.blackish,
+                                              borderRadius:
+                                              BorderRadius.circular(8),
+                                            ),
+                                            child: Icon(
+                                              Icons.arrow_back_ios_new,
+                                              size: 28,
+                                              color: AppColors.white,
+                                            ),
                                           ),
                                         ),
                                       if (index <
@@ -214,10 +222,18 @@ class BodypartsQuizScreen extends StatelessWidget {
                                               curve: Curves.ease,
                                             );
                                           },
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: AppColors.white,
-                                            size: 36,
+                                          child: Container(
+                                            padding:EdgeInsets.all(6),
+                                            decoration: BoxDecoration(
+                                              color: AppColors.blackish,
+                                              borderRadius:
+                                              BorderRadius.circular(8),
+                                            ),
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: AppColors.white,
+                                              size: 28,
+                                            ),
                                           ),
                                         ),
                                     ],

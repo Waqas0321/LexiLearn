@@ -11,6 +11,7 @@ class AppRoutes{
   static const String ALPHABETSQUIZSCREEN = "/alphabetsquizScreen";
   static const String ALPHABETDETAILSSCREEN = "/alphabetdetailScreen";
   static const String NUMBERSSCREEN = "/numbersScreen";
+  static const String NUMBERSQUIZSCREEN = "/numbersquizScreen";
   static const String COLORSSCREEN = "/colorsScreen";
   static const String FRUITSSCREEN = "/fruitsScreen";
   static const String ETHICSSCREEN = "/ethicsScreen";
