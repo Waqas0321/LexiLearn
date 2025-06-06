@@ -6,7 +6,7 @@ import 'package:lexi_learn/core/widgets/custom_toast_show.dart';
 import 'package:lexi_learn/data/providers/firestore_provider.dart';
 import '../../../data/models/question_model.dart';
 
-class BodypartsQuizController extends GetxController {
+class EthicsQuizController extends GetxController {
   FireStoreProvider fireStore = FireStoreProvider();
   ToastClass toast = ToastClass();
 
@@ -47,6 +47,7 @@ class BodypartsQuizController extends GetxController {
   void submit(int quizIndex) async {
     try {
       isLoading.value = true;
+      print(quizIndex);
       final data = prepareQuizData(quizIndex);
       await storeQuizData(data);
       submitted.value = true;
@@ -69,7 +70,7 @@ class BodypartsQuizController extends GetxController {
 
   Future<void> storeQuizData(Map<String, dynamic> data) async {
     await fireStore.storeDataWithUserID(
-      collectionName: "body_parts_quiz",
+      collectionName: "ethics_quiz",
       data: data,
       toJson: (data) => data,
     );

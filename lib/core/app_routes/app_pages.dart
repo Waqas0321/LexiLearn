@@ -13,6 +13,7 @@ import 'package:lexi_learn/faetures/body_parts/view/bodyparts_detail_screen.dart
 import 'package:lexi_learn/faetures/body_parts/view/bodyparts_quiz_screen.dart';
 import 'package:lexi_learn/faetures/colors/view/colors_screen.dart';
 import 'package:lexi_learn/faetures/colors/view/colors_quiz_screen.dart';
+import 'package:lexi_learn/faetures/edthics/view/ethics_quiz_screen.dart';
 import 'package:lexi_learn/faetures/edthics/view/ethics_screen.dart';
 import 'package:lexi_learn/faetures/fruits/view/fruits_quiz_screen.dart';
 import 'package:lexi_learn/faetures/fruits/view/fruits_screen.dart';
@@ -78,6 +79,12 @@ class AppPages {
     GetPage(
         name: AppRoutes.NUMBERSQUIZSCREEN,
         page: () => NumbersQuizScreen(),
+        transition: Transition.fade,
+        curve: Curves.linear,
+        transitionDuration: const Duration(microseconds: 200)),
+    GetPage(
+        name: AppRoutes.ETHICSQUIZSCREEN,
+        page: () => EthicsQuizScreen(),
         transition: Transition.fade,
         curve: Curves.linear,
         transitionDuration: const Duration(microseconds: 200)),

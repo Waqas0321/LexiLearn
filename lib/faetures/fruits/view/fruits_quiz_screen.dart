@@ -252,12 +252,14 @@ class FruitsQuizScreen extends StatelessWidget {
             Gap(8),
             Padding(
               padding: appSizes.getCustomPadding(top: 0, bottom: 3),
-              child: CustomElevatedButton(
-                isLoading: controller.isLoading.value,
-                onPress: () {
-                  controller.submit(quizIndex);
-                },
-                text: "🚀 Submit Matches",
+              child: Obx(
+                () =>  CustomElevatedButton(
+                  isLoading: controller.isLoading.value,
+                  onPress: () {
+                    controller.submit(quizIndex);
+                  },
+                  text: "🚀 Submit Matches",
+                ),
               ),
             ),
           ],

@@ -10,6 +10,7 @@ import 'package:lexi_learn/faetures/body_parts/controller/bodyparts_quiz_control
 import 'package:lexi_learn/faetures/colors/controller/colors_controller.dart';
 import 'package:lexi_learn/faetures/colors/controller/colors_quiz_controller.dart';
 import 'package:lexi_learn/faetures/edthics/controller/ethics_controller.dart';
+import 'package:lexi_learn/faetures/edthics/controller/ethics_quiz_controller.dart';
 import 'package:lexi_learn/faetures/fruits/controller/fruits_controller.dart';
 import 'package:lexi_learn/faetures/fruits/controller/fruits_quiz_controller.dart';
 import 'package:lexi_learn/faetures/numbers/controller/numbers_controller.dart';
@@ -56,6 +57,9 @@ class InitialBindings extends Bindings {
 
     Get.put(EthicsController());
     Get.lazyPut(() => EthicsController());
+
+    Get.put(EthicsQuizController());
+    Get.lazyPut(() => EthicsQuizController());
 
     Get.put(AnimalsController());
     Get.lazyPut(() => AnimalsController());

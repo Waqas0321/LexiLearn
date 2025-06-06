@@ -120,7 +120,7 @@ class NumbersScreen extends StatelessWidget {
                           }
                           final colorIndex =
                               index - (index ~/ (quizInterval + 1));
-                          final color = counting[colorIndex];
+                          final number = counting[colorIndex];
                           return GestureDetector(
                             onTap: () {
                               controller.setIndex(colorIndex);
@@ -137,8 +137,15 @@ class NumbersScreen extends StatelessWidget {
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Center(child: Image.asset(
-                                  color.imagePath, height: 50)),
+                              child: Column(
+                                children: [
+                                  Image.asset(number.imagePath,height: 50),
+                                  CustomTextWidget(
+                                    text: number.name,
+                                    fontSize: 12,
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },

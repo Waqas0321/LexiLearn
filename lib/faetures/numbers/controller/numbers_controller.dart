@@ -63,52 +63,52 @@ class NumbersController extends GetxController {
         CountingModel(
           name: 'Eleven',
           imagePath: AppImages.eleven,
-          referenceImagePath: AppImages.onePic,
+          referenceImagePath: AppImages.elevenPic,
         ),
         CountingModel(
           name: 'Twelve',
           imagePath: AppImages.twelve,
-          referenceImagePath: AppImages.twoPic,
+          referenceImagePath: AppImages.twelvePic,
         ),
         CountingModel(
           name: 'Thirteen',
           imagePath: AppImages.thirteen,
-          referenceImagePath: AppImages.threePic,
+          referenceImagePath: AppImages.thirteenPic,
         ),
         CountingModel(
           name: 'Fourteen',
           imagePath: AppImages.fourteen,
-          referenceImagePath: AppImages.fourPic,
+          referenceImagePath: AppImages.fourteenPic,
         ),
         CountingModel(
           name: 'Fifteen',
           imagePath: AppImages.fifteen,
-          referenceImagePath: AppImages.fivePic,
+          referenceImagePath: AppImages.fifteenPic,
         ),
         CountingModel(
           name: 'Sixteen',
           imagePath: AppImages.sixteen,
-          referenceImagePath: AppImages.sixPic,
+          referenceImagePath: AppImages.sixteenPic,
         ),
         CountingModel(
           name: 'Seventeen',
           imagePath: AppImages.seventeen,
-          referenceImagePath: AppImages.sevenPic,
+          referenceImagePath: AppImages.seventeenPic,
         ),
         CountingModel(
           name: 'Eighteen',
           imagePath: AppImages.eighteen,
-          referenceImagePath: AppImages.eightPic,
+          referenceImagePath: AppImages.eighteenPic,
         ),
         CountingModel(
           name: 'Nineteen',
           imagePath: AppImages.nineteen,
-          referenceImagePath: AppImages.ninePic,
+          referenceImagePath: AppImages.nineteenPic,
         ),
         CountingModel(
           name: 'Twenty',
           imagePath: AppImages.twenty,
-          referenceImagePath: AppImages.tenPic,
+          referenceImagePath: AppImages.twentyPic,
         ),
       ].obs;
 

@@ -54,7 +54,7 @@ class AlphabetsScreen extends StatelessWidget {
                   }
                   final quizIndex = snapshot.data!['quizIndex'];
                   double progress =
-                  [0.20, 0.40, 0.60, 0.80, 1.0][quizIndex.clamp(0, 4)];
+                  [0.20, 0.36, 0.52, 0.68, 0.84, 1.0][quizIndex.clamp(0, 5)];
                   return SizedBox(
                     height: 35,
                     width: 35,

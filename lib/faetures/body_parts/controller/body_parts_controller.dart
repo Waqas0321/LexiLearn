@@ -58,7 +58,7 @@ class BodyPartsController extends GetxController{
 
   Stream<Map<String, dynamic>?> getBodypartsQuizProgress() {
     return fireStore.getDataByUserID(
-      collectionName: "Body parts Quiz",
+      collectionName: "body_parts_quiz",
       fromJson: (data) => data,
     );
   }

@@ -156,16 +156,39 @@ class AppImages {
   static  get nineteen => 'number-19'.countingToPng;
   static  get twenty => 'twenty'.countingToPng;
 
-  static  get onePic => '1-Photoroom'.countingThingsToPng;
-  static  get twoPic => '2-Photoroom'.countingThingsToPng;
-  static  get threePic => '3-Photoroom'.countingThingsToPng;
-  static  get fourPic => '4-Photoroom'.countingThingsToPng;
-  static  get fivePic => '5-Photoroom'.countingThingsToPng;
-  static  get sixPic => '6-Photoroom'.countingThingsToPng;
-  static  get sevenPic => '7-Photoroom'.countingThingsToPng;
-  static  get eightPic => '8-Photoroom'.countingThingsToPng;
-  static  get ninePic => '9-Photoroom'.countingThingsToPng;
-  static  get tenPic => '10-Photoroom'.countingThingsToPng;
+  static  get onePic => '20'.countingThingsToPng;
+  static  get twoPic => '19'.countingThingsToPng;
+  static  get threePic => '18'.countingThingsToPng;
+  static  get fourPic => '17'.countingThingsToPng;
+  static  get fivePic => '16'.countingThingsToPng;
+  static  get sixPic => '15'.countingThingsToPng;
+  static  get sevenPic => '14'.countingThingsToPng;
+  static  get eightPic => '13'.countingThingsToPng;
+  static  get ninePic => '12'.countingThingsToPng;
+  static  get tenPic => '11'.countingThingsToPng;
+  static  get elevenPic => '10'.countingThingsToPng;
+  static  get twelvePic => '9'.countingThingsToPng;
+  static  get thirteenPic => '8'.countingThingsToPng;
+  static  get fourteenPic => '7'.countingThingsToPng;
+  static  get fifteenPic => '6'.countingThingsToPng;
+  static  get sixteenPic => '5'.countingThingsToPng;
+  static  get seventeenPic => '4'.countingThingsToPng;
+  static  get eighteenPic => '3'.countingThingsToPng;
+  static  get nineteenPic => '2'.countingThingsToPng;
+  static  get twentyPic => '1'.countingThingsToPng;
+
+  static  get welcome => 'welcome 2'.toGif;
+  static  get thanks => 'thanks'.toGif;
+  static  get sorry => 'sorry'.toGif;
+  static  get request => 'request please'.toGif;
+  static  get goodNight => 'good night'.toGif;
+  static  get goodMorning => 'Good morning'.toGif;
+  static  get walaikumAsalam => 'download'.toGif;
+  static  get dontTouch => 'dont touch fire'.toGif;
+  static  get congrats => 'cograts'.toGif;
+  static  get bye => 'bye bye'.toGif;
+  static  get aoa => 'Assalam o Alaikum'.toGif;
+  static  get appreciate => 'appreciate good'.toGif;
 
 
 

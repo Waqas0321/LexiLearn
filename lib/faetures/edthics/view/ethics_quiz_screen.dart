@@ -6,15 +6,15 @@ import 'package:lexi_learn/core/utils/app_sizes.dart';
 import 'package:lexi_learn/core/widgets/custom_appbar.dart';
 import 'package:lexi_learn/core/widgets/custom_elevated_button.dart';
 import 'package:lexi_learn/core/widgets/custom_text_widget.dart';
-import 'package:lexi_learn/faetures/body_parts/controller/bodyparts_quiz_controller.dart';
 import '../../../core/Const/app_images.dart';
 import '../../../data/models/question_model.dart';
+import '../controller/ethics_quiz_controller.dart';
 
-class BodypartsQuizScreen extends StatelessWidget {
-  final BodypartsQuizController controller = Get.find();
+class EthicsQuizScreen extends StatelessWidget {
+  final EthicsQuizController controller = Get.find();
   final AppSizes appSizes = AppSizes();
 
-  BodypartsQuizScreen({super.key});
+  EthicsQuizScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class BodypartsQuizScreen extends StatelessWidget {
               );
             }),
             Obx(
-                  () => Expanded(
+              () => Expanded(
                 child: Padding(
                   padding: appSizes.getCustomPadding(),
                   child: Column(
@@ -84,9 +84,8 @@ class BodypartsQuizScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             final question = controller.questions[index];
                             final matchedAnswer =
-                            controller.matchedAnswers[question.id];
+                                controller.matchedAnswers[question.id];
                             final submitted = controller.submitted.value;
-
                             return Padding(
                               padding: appSizes.getCustomPadding(
                                 top: 0,
@@ -108,21 +107,21 @@ class BodypartsQuizScreen extends StatelessWidget {
                                   Gap(20),
                                   Obx(() {
                                     final matchedAnswer =
-                                    controller.matchedAnswers[question.id];
+                                        controller.matchedAnswers[question.id];
                                     final submitted =
                                         controller.submitted.value;
                                     return GridView.builder(
                                       shrinkWrap: true,
                                       physics:
-                                      const NeverScrollableScrollPhysics(),
+                                          const NeverScrollableScrollPhysics(),
                                       itemCount: question.options.length,
                                       gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 12,
-                                        mainAxisSpacing: 12,
-                                        childAspectRatio: 1.5,
-                                      ),
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 12,
+                                            mainAxisSpacing: 12,
+                                            childAspectRatio: 1.5,
+                                          ),
                                       itemBuilder: (context, index) {
                                         final option = question.options[index];
                                         final bool isSelected =
@@ -165,7 +164,7 @@ class BodypartsQuizScreen extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               color: backgroundColor,
                                               borderRadius:
-                                              BorderRadius.circular(12),
+                                                  BorderRadius.circular(12),
                                               border: Border.all(
                                                 color: borderColor,
                                               ),
@@ -255,7 +254,7 @@ class BodypartsQuizScreen extends StatelessWidget {
               child: Obx(
                 () =>  CustomElevatedButton(
                   isLoading: controller.isLoading.value,
-                  onPress: () {
+                  onPress: () async{
                     controller.submit(quizIndex);
                   },
                   text: "🚀 Submit Matches",

@@ -16,6 +16,6 @@ extension ImagePathExtensions on String {
   String get toJpeg => 'assets/images/$this.jpeg';
 
   /// Converts the string to a GIF image path.
-  String get toGif => 'assets/images/$this.gif';
+  String get toGif => 'assets/ethics/$this.gif';
 
 }
