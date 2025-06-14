@@ -7,11 +7,11 @@ import 'package:lexi_learn/core/widgets/custom_appbar.dart';
 import 'package:lexi_learn/faetures/alphabets/controller/alphabets_controller.dart';
 import '../../../core/Const/app_images.dart';
 import '../../../core/helpers/bottom_curve_clipper.dart';
+import '../tracing/view/tracing_screen.dart';
 
 class AlphabetDetailScreen extends StatelessWidget {
   final AlphabetsController controller = Get.find();
   final AppSizes appSizes = AppSizes();
-
   AlphabetDetailScreen({super.key});
 
   @override
@@ -23,7 +23,6 @@ class AlphabetDetailScreen extends StatelessWidget {
           body: Container(
             height: appSizes.getHeightPercentage(100),
             width: appSizes.getWidthPercentage(100),
-            padding: appSizes.getCustomPadding(top: 0, left: 0, right: 0),
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(AppImages.background),
@@ -31,78 +30,102 @@ class AlphabetDetailScreen extends StatelessWidget {
               ),
             ),
             child: Obx(() {
-              final currentAlphabet =
-                  controller.alphabet[controller.currentIndex.value];
+              final currentAlphabet = controller.alphabet[controller.currentIndex.value];
+
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ClipPath(
                     clipper: BottomCurveClipper(),
                     child: Container(
-                      height: appSizes.getHeightPercentage(50),
-                      width: appSizes.getWidthPercentage(100),
+                      width: double.infinity,
                       padding: appSizes.getCustomPadding(),
                       color: AppColors.white,
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector(
-                                  onTap: controller.previous,
-                                  child: Container(
-                                    padding: EdgeInsets.all(6),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.blackish,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Icon(
-                                      Icons.arrow_back_ios_new,
-                                      color: AppColors.white,
-                                      size: 28,
-                                    ),
+                      child: Column(
+                        children: [
+                          const Gap(16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: controller.previous,
+                                child: Container(
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.blackish,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: const Icon(
+                                    Icons.arrow_back_ios_new,
+                                    color: AppColors.white,
+                                    size: 28,
                                   ),
                                 ),
-                                Image.asset(
-                                  currentAlphabet.imagePath,
-                                  height: 90,
-                                ),
-                                GestureDetector(
-                                  onTap: controller.next,
-                                  child: Container(
-                                    padding: EdgeInsets.all(6),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.blackish,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Icon(
-                                      Icons.arrow_forward_ios_outlined,
-                                      color: AppColors.white,
-                                      size: 28,
-                                    ),
+                              ),
+                              Image.asset(
+                                currentAlphabet.imagePath,
+                                height: 90,
+                              ),
+                              GestureDetector(
+                                onTap: controller.next,
+                                child: Container(
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.blackish,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: const Icon(
+                                    Icons.arrow_forward_ios_outlined,
+                                    color: AppColors.white,
+                                    size: 28,
                                   ),
                                 ),
-                              ],
+                              ),
+                            ],
+                          ),
+                          const Gap(30),
+
+                          // 📷 Reference Image
+                          Image.asset(
+                            currentAlphabet.referenceImagePath,
+                            height: 130,
+                            width: 130,
+                          ),
+
+                          const Gap(30),
+
+                          //  Refresh Icon
+                          GestureDetector(
+                            onTap: controller.reListen,
+                            child: const Icon(
+                              Icons.refresh,
+                              color: AppColors.blackish,
+                              size: 40,
                             ),
-                            Spacer(),
-                            Image.asset(
-                              currentAlphabet.referenceImagePath,
-                              height: 130,
-                              width: 130,
-                            ),
-                            Gap(30),
-                            GestureDetector(
-                              onTap: controller.reListen,
-                              child: Icon(
-                                Icons.refresh,
-                                color: AppColors.blackish,
-                                size: 40,
+                          ),
+
+                          const Gap(20),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.blackish,
+                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            Gap(20),
-                          ],
-                        ),
+                            onPressed: () {
+                              Get.to(() => TracingScreen(
+                                alphabet: currentAlphabet, // pass full object
+                              ));
+                            },
+                            child: const Text(
+                              'Trace Letter',
+                              style: TextStyle(color: Colors.white, fontSize: 16),
+                            ),
+                          ),
+
+                          const Gap(20),
+                        ],
                       ),
                     ),
                   ),
