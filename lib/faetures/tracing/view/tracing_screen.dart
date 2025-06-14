@@ -8,8 +8,8 @@ import '../../../../core/Const/app_images.dart';
 import '../controller/tracing_cotroller.dart';
 import 'package:tracing_game/tracing_game.dart';
 
-class AlphabetTraceScreen extends StatelessWidget {
-  AlphabetTraceScreen({super.key});
+class TracingScreen extends StatelessWidget {
+  TracingScreen({super.key});
 
   final TracingController controller = Get.put(TracingController());
   final AppSizes appSizes = AppSizes();
@@ -17,6 +17,7 @@ class AlphabetTraceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String alphabet = Get.arguments["alphabet"];
+    final bool isAlphabet = Get.arguments["isAlphabet"];
     return Scaffold(
       appBar: CustomAppBar(title: "Alphabets Trace", goBack: true),
       body: Container(
@@ -34,27 +35,39 @@ class AlphabetTraceScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Gap(appSizes.getHeightPercentage(22)),
-            TracingCharsGame(
-              showAnchor: true,
-              traceShapeModel: [
-                TraceCharsModel(
-                  chars: [
-                    TraceCharModel(
-                      char: alphabet.toUpperCase(),
+            isAlphabet
+                ? TracingCharsGame(
+                  showAnchor: true,
+                  traceShapeModel: [
+                    TraceCharsModel(
+                      chars: [
+                        TraceCharModel(
+                          char: alphabet.toUpperCase(),
+                          traceShapeOptions: TraceShapeOptions(
+                            innerPaintColor: AppColors.orange,
+                          ),
+                        ),
+                        TraceCharModel(
+                          char: alphabet.toLowerCase(),
+                          traceShapeOptions: TraceShapeOptions(
+                            innerPaintColor: AppColors.orange,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+                : TracingWordGame(
+                  showAnchor: true,
+                  words: [
+                    TraceWordModel(
+                      word: alphabet.toUpperCase(),
                       traceShapeOptions: TraceShapeOptions(
                         innerPaintColor: AppColors.orange,
                       ),
                     ),
-                    TraceCharModel(
-                      char: alphabet.toLowerCase(),
-                      traceShapeOptions: TraceShapeOptions(
-                        innerPaintColor: AppColors.orange
-                      ),
-                    ),
                   ],
                 ),
-              ],
-            ),
           ],
         ),
       ),

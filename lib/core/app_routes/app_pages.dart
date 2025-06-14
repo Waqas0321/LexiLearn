@@ -2,7 +2,6 @@ import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:lexi_learn/core/app_routes/routes.dart';
 import 'package:lexi_learn/faetures/ai/view/ai_screen.dart';
-import 'package:lexi_learn/faetures/alphabets/tracing/view/tracing_screen.dart';
 import 'package:lexi_learn/faetures/alphabets/view/alphabet_detail_screen.dart';
 import 'package:lexi_learn/faetures/alphabets/view/alphabets_quiz_screen.dart';
 import 'package:lexi_learn/faetures/alphabets/view/alphabets_screen.dart';
@@ -26,6 +25,7 @@ import '../../faetures/auth/sign_up/view/sign_up_screen.dart';
 import '../../faetures/auth/signin/view/signin_screen.dart';
 import '../../faetures/home/view/home_screen.dart';
 import '../../faetures/splash/view/splash_screen.dart';
+import '../../faetures/tracing/view/tracing_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -211,8 +211,8 @@ class AppPages {
     ),
 
     GetPage(
-      name: AppRoutes.TRACEALPHABETSSCREEN,
-      page: () => AlphabetTraceScreen(),
+      name: AppRoutes.TRACINGSCREEN,
+      page: () => TracingScreen(),
       transition: Transition.fade,
       curve: Curves.linear,
       transitionDuration: const Duration(microseconds: 200),

@@ -6,6 +6,7 @@ import 'package:lexi_learn/core/utils/app_sizes.dart';
 import 'package:lexi_learn/core/widgets/custom_appbar.dart';
 import 'package:lexi_learn/faetures/numbers/controller/numbers_controller.dart';
 import '../../../core/Const/app_images.dart';
+import '../../../core/app_routes/routes.dart';
 import '../../../core/helpers/bottom_curve_clipper.dart';
 
 class NumberDetailScreen extends StatelessWidget {
@@ -31,7 +32,7 @@ class NumberDetailScreen extends StatelessWidget {
               ),
             ),
             child: Obx(() {
-              final currentAlphabet =
+              final currentNumber =
                   controller.numbers[controller.currentIndex.value];
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -39,7 +40,7 @@ class NumberDetailScreen extends StatelessWidget {
                   ClipPath(
                     clipper: BottomCurveClipper(),
                     child: Container(
-                      height: appSizes.getHeightPercentage(50),
+                      height: appSizes.getHeightPercentage(60),
                       width: appSizes.getWidthPercentage(100),
                       padding: appSizes.getCustomPadding(),
                       color: AppColors.white,
@@ -65,7 +66,7 @@ class NumberDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Image.asset(
-                                  currentAlphabet.imagePath,
+                                  currentNumber.imagePath,
                                   height: 60,
                                 ),
                                 GestureDetector(
@@ -87,7 +88,7 @@ class NumberDetailScreen extends StatelessWidget {
                             ),
                             Spacer(),
                             Image.asset(
-                              currentAlphabet.referenceImagePath,
+                              currentNumber.referenceImagePath,
                               height: 180,
                               width: 180,
                             ),
@@ -98,6 +99,26 @@ class NumberDetailScreen extends StatelessWidget {
                                 Icons.refresh,
                                 color: AppColors.blackish,
                                 size: 40,
+                              ),
+                            ),
+                            const Gap(20),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.blackish,
+                                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              onPressed: () {
+                                Get.toNamed(AppRoutes.TRACINGSCREEN,arguments: {
+                                  "alphabet": currentNumber.number,
+                                  "isAlphabet":false,
+                                });
+                              },
+                              child: const Text(
+                                'Trace Letter',
+                                style: TextStyle(color: Colors.white, fontSize: 16),
                               ),
                             ),
                             Gap(20),

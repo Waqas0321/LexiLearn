@@ -103,7 +103,6 @@ class AlphabetDetailScreen extends StatelessWidget {
                               size: 40,
                             ),
                           ),
-
                           const Gap(20),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -114,8 +113,9 @@ class AlphabetDetailScreen extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              Get.toNamed(AppRoutes.TRACEALPHABETSSCREEN,arguments: {
-                                "alphabet": currentAlphabet.name
+                              Get.toNamed(AppRoutes.TRACINGSCREEN,arguments: {
+                                "alphabet": currentAlphabet.name,
+                                "isAlphabet":true,
                               });
                             },
                             child: const Text(
