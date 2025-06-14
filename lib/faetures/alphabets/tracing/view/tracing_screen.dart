@@ -1,94 +1,63 @@
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-
-import '../../../../core/widgets/well_done_animation.dart';
-import '../../../../data/models/alphabet_model.dart';
+import 'package:lexi_learn/core/Const/app_colors.dart';
+import 'package:lexi_learn/core/utils/app_sizes.dart';
+import 'package:lexi_learn/core/widgets/custom_appbar.dart';
+import '../../../../core/Const/app_images.dart';
 import '../controller/tracing_cotroller.dart';
+import 'package:tracing_game/tracing_game.dart';
 
-class TracingScreen extends StatelessWidget {
-  final AlphabetModel alphabet;
-  TracingScreen({super.key, required this.alphabet});
+class AlphabetTraceScreen extends StatelessWidget {
+  AlphabetTraceScreen({super.key});
 
-  final controller = Get.put(TracingController());
+  final TracingController controller = Get.put(TracingController());
+  final AppSizes appSizes = AppSizes();
 
   @override
   Widget build(BuildContext context) {
-    controller.setLetter(alphabet.name); // e.g., "A"
-
+    final String alphabet = Get.arguments["alphabet"];
     return Scaffold(
-      appBar: AppBar(title: Text("Trace ${alphabet.name}")),
-      body: Stack(
-        children: [
-          Obx(() => Positioned.fill(
-            child: controller.maskImage.value != null
-                ? CustomPaint(
-              painter: TracingPainter(
-                points: controller.points,
-                maskImage: controller.maskImage.value!,
-              ),
-            )
-                : Center(child: CircularProgressIndicator()),
-          )),
-          GestureDetector(
-            onPanUpdate: (details) => controller.addPoint(details.localPosition),
-            onPanEnd: (_) => controller.endDrawing(),
+      appBar: CustomAppBar(title: "Alphabets Trace", goBack: true),
+      body: Container(
+        height: appSizes.getHeightPercentage(100),
+        width: appSizes.getWidthPercentage(100),
+        padding: appSizes.getCustomPadding(),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(AppImages.background),
+            fit: BoxFit.cover,
           ),
-          Positioned(
-            bottom: 40,
-            left: 40,
-            child: ElevatedButton(
-              onPressed: controller.compareWithMask,
-              child: Text("Check Tracing"),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Gap(appSizes.getHeightPercentage(22)),
+            TracingCharsGame(
+              showAnchor: true,
+              traceShapeModel: [
+                TraceCharsModel(
+                  chars: [
+                    TraceCharModel(
+                      char: alphabet.toUpperCase(),
+                      traceShapeOptions: TraceShapeOptions(
+                        innerPaintColor: AppColors.orange,
+                      ),
+                    ),
+                    TraceCharModel(
+                      char: alphabet.toLowerCase(),
+                      traceShapeOptions: TraceShapeOptions(
+                        innerPaintColor: AppColors.orange
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ),
-          Positioned(
-            bottom: 40,
-            right: 40,
-            child: ElevatedButton(
-              onPressed: controller.nextLetter,
-              child: Text("Next Letter"),
-            ),
-          ),
-          Obx(() => controller.showSuccess.value
-              ? Center(child: WellDoneAnimation())
-              : SizedBox.shrink()),
-        ],
+          ],
+        ),
       ),
     );
   }
-}
-
-class TracingPainter extends CustomPainter {
-  final List<Offset?> points;
-  final ui.Image maskImage;
-
-  TracingPainter({required this.points, required this.maskImage});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Draw faded mask image as background
-    final paint = Paint()..color = Colors.grey.withOpacity(0.3);
-    canvas.drawImageRect(
-      maskImage,
-      Rect.fromLTWH(0, 0, maskImage.width.toDouble(), maskImage.height.toDouble()),
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      paint,
-    );
-
-    // Draw user trace
-    final tracePaint = Paint()
-      ..color = Colors.blue
-      ..strokeWidth = 12
-      ..strokeCap = StrokeCap.round;
-
-    for (int i = 0; i < points.length - 1; i++) {
-      if (points[i] != null && points[i + 1] != null) {
-        canvas.drawLine(points[i]!, points[i + 1]!, tracePaint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

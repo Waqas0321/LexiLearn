@@ -10,6 +10,8 @@ class AlphabetsQuizController extends GetxController {
   FireStoreProvider fireStore = FireStoreProvider();
   PageController pageController = PageController();
   ToastClass toast = ToastClass();
+  final RxInt currentPage = 0.obs;
+
 
   var submitted = false.obs;
   RxMap<String, String> matchedAnswers = <String, String>{}.obs;
@@ -79,8 +81,11 @@ class AlphabetsQuizController extends GetxController {
 
   void showQuizResultToast() {
     final score = getScore();
-    final totalQuestions = questions.length;
-    toast.showCustomToast("You scored $score out of $totalQuestions");
+    if(score > 2){
+      toast.showCustomToast("Good effort you attempt best");
+    }else{
+      toast.showCustomToast("Good but do effort for better");
+    }
   }
 
   void handleSubmissionError(dynamic error) {

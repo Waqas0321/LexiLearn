@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lexi_learn/core/Const/app_colors.dart';
+import 'package:lexi_learn/core/app_routes/routes.dart';
 import 'package:lexi_learn/core/utils/app_sizes.dart';
 import 'package:lexi_learn/core/widgets/custom_appbar.dart';
 import 'package:lexi_learn/faetures/alphabets/controller/alphabets_controller.dart';
 import '../../../core/Const/app_images.dart';
 import '../../../core/helpers/bottom_curve_clipper.dart';
-import '../tracing/view/tracing_screen.dart';
 
 class AlphabetDetailScreen extends StatelessWidget {
   final AlphabetsController controller = Get.find();
@@ -114,9 +114,9 @@ class AlphabetDetailScreen extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              Get.to(() => TracingScreen(
-                                alphabet: currentAlphabet, // pass full object
-                              ));
+                              Get.toNamed(AppRoutes.TRACEALPHABETSSCREEN,arguments: {
+                                "alphabet": currentAlphabet.name
+                              });
                             },
                             child: const Text(
                               'Trace Letter',

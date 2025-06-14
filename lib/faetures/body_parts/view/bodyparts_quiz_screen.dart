@@ -11,7 +11,7 @@ import '../../../core/Const/app_images.dart';
 import '../../../data/models/question_model.dart';
 
 class BodypartsQuizScreen extends StatelessWidget {
-  final BodypartsQuizController controller = Get.find();
+  final BodypartsQuizController controller = Get.put(BodypartsQuizController());
   final AppSizes appSizes = AppSizes();
 
   BodypartsQuizScreen({super.key});
@@ -81,12 +81,11 @@ class BodypartsQuizScreen extends StatelessWidget {
                           controller: controller.pageController,
                           itemCount: controller.questions.length,
                           physics: const NeverScrollableScrollPhysics(),
+                          onPageChanged: (index) {
+                            controller.currentPage.value = index;
+                          },
                           itemBuilder: (context, index) {
                             final question = controller.questions[index];
-                            final matchedAnswer =
-                            controller.matchedAnswers[question.id];
-                            final submitted = controller.submitted.value;
-
                             return Padding(
                               padding: appSizes.getCustomPadding(
                                 top: 0,
@@ -184,7 +183,9 @@ class BodypartsQuizScreen extends StatelessWidget {
                                   Gap(appSizes.getHeightPercentage(7)),
                                   Row(
                                     mainAxisAlignment:
-                                    index == 0? MainAxisAlignment.end:MainAxisAlignment.spaceBetween,
+                                    index > 0
+                                        ? MainAxisAlignment.spaceBetween
+                                        : MainAxisAlignment.end,
                                     children: [
                                       if (index > 0)
                                         GestureDetector(
@@ -198,16 +199,27 @@ class BodypartsQuizScreen extends StatelessWidget {
                                             );
                                           },
                                           child: Container(
-                                            padding:EdgeInsets.all(6),
+                                            padding: EdgeInsets.all(6),
                                             decoration: BoxDecoration(
                                               color: AppColors.blackish,
                                               borderRadius:
                                               BorderRadius.circular(8),
                                             ),
-                                            child: Icon(
-                                              Icons.arrow_back_ios_new,
-                                              size: 28,
-                                              color: AppColors.white,
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.arrow_back_ios_new,
+                                                  size: 25,
+                                                  color: AppColors.white,
+                                                ),
+                                                CustomTextWidget(
+                                                  text: "Previous",
+                                                  textColor: AppColors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                                Gap(4),
+                                              ],
                                             ),
                                           ),
                                         ),
@@ -223,16 +235,27 @@ class BodypartsQuizScreen extends StatelessWidget {
                                             );
                                           },
                                           child: Container(
-                                            padding:EdgeInsets.all(6),
+                                            padding: EdgeInsets.all(6),
                                             decoration: BoxDecoration(
                                               color: AppColors.blackish,
                                               borderRadius:
                                               BorderRadius.circular(8),
                                             ),
-                                            child: Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: AppColors.white,
-                                              size: 28,
+                                            child: Row(
+                                              children: [
+                                                Gap(4),
+                                                CustomTextWidget(
+                                                  text: "Next",
+                                                  textColor: AppColors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                                Icon(
+                                                  Icons.arrow_forward_ios,
+                                                  color: AppColors.white,
+                                                  size: 25,
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),
@@ -250,18 +273,24 @@ class BodypartsQuizScreen extends StatelessWidget {
               ),
             ),
             Gap(8),
-            Padding(
-              padding: appSizes.getCustomPadding(top: 0, bottom: 3),
-              child: Obx(
-                () =>  CustomElevatedButton(
-                  isLoading: controller.isLoading.value,
-                  onPress: () {
-                    controller.submit(quizIndex);
-                  },
-                  text: "🚀 Submit Matches",
+            Obx(() {
+              bool isLastPage = controller.currentPage.value == controller.questions.length - 1;
+
+              return Visibility(
+                visible: isLastPage,
+                child: Padding(
+                  padding: appSizes.getCustomPadding(top: 0, bottom: 3),
+                  child: CustomElevatedButton(
+                    isLoading: controller.isLoading.value,
+                    onPress: () {
+                      controller.submit(quizIndex);
+                    },
+                    text: "🚀 Submit Answers",
+                  ),
                 ),
-              ),
-            ),
+              );
+            }),
+
           ],
         ),
       ),

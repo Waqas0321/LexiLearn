@@ -17,7 +17,6 @@ class FireStoreProvider {
     try {
       String documentId = uuid.v4();
       await fireStore.collection(collectionName).doc(documentId).set(toJson(data));
-      toast.showCustomToast("Data stored successfully!");
       return documentId;
     } catch (e) {
       toast.showCustomToast("Failed to store data: $e");
@@ -35,7 +34,6 @@ class FireStoreProvider {
       String? userId = await PreferenceHelper.getString("userID");
       if (userId == null) throw Exception("User not authenticated!");
       await fireStore.collection(collectionName).doc(userId).set(toJson(data));
-      toast.showCustomToast("User data stored successfully!");
     } catch (e) {
       toast.showCustomToast("Failed to store user data: $e");
       throw Exception("Failed to store user data: $e");
@@ -88,9 +86,7 @@ class FireStoreProvider {
   }) async {
     try {
       await fireStore.collection(collectionName).doc(documentId).update(updates);
-      toast.showCustomToast("Data updated successfully!");
     } catch (e) {
-      toast.showCustomToast("Failed to update data: $e");
       throw Exception("Failed to update data: $e");
     }
   }
@@ -104,9 +100,7 @@ class FireStoreProvider {
       String? userId = await PreferenceHelper.getString("userID");
       if (userId == null) throw Exception("User not authenticated!");
       await fireStore.collection(collectionName).doc(userId).update(updates);
-      toast.showCustomToast("User data updated successfully!");
     } catch (e) {
-      toast.showCustomToast("Failed to update user data: $e");
       throw Exception("Failed to update user data: $e");
     }
   }

@@ -54,7 +54,7 @@ class NumbersScreen extends StatelessWidget {
                   }
                   final quizIndex = snapshot.data!['quizIndex'];
                   double progress =
-                  [0.20, 0.40, 0.60, 0.80, 1.0][quizIndex.clamp(0, 4)];
+                      [0.20, 0.40, 0.60, 0.80, 1.0][quizIndex.clamp(0, 4)];
                   return SizedBox(
                     height: 35,
                     width: 35,
@@ -137,14 +137,11 @@ class NumbersScreen extends StatelessWidget {
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Column(
-                                children: [
-                                  Image.asset(number.imagePath,height: 50),
-                                  CustomTextWidget(
-                                    text: number.name,
-                                    fontSize: 12,
-                                  ),
-                                ],
+                              child: Center(
+                                child: Image.asset(
+                                  number.imagePath,
+                                  height: 50,
+                                ),
                               ),
                             ),
                           );
@@ -171,25 +168,25 @@ class NumbersScreen extends StatelessWidget {
         final end = min(start + groupSize, allNumbers.length);
         final group = allNumbers.sublist(start, end);
         final questions =
-        group.map((numbers) {
-          final otherOptions =
-          [...group]
-            ..remove(numbers)
-            ..shuffle();
-          final options =
-          ([numbers.name] +
-              otherOptions.take(3).map((e) => e.name).toList())
-            ..shuffle();
+            group.map((numbers) {
+              final otherOptions =
+                  [...group]
+                    ..remove(numbers)
+                    ..shuffle();
+              final options =
+                  ([numbers.name] +
+                        otherOptions.take(3).map((e) => e.name).toList())
+                    ..shuffle();
 
-          return QuestionModel(
-            question: "What is the name of this thing?",
-            options: options,
-            correctAnswer: numbers.name,
-            displayImage: numbers.referenceImagePath,
-            isColorQuestion: true,
-            id: numbers.name,
-          );
-        }).toList();
+              return QuestionModel(
+                question: "What is the name of this thing?",
+                options: options,
+                correctAnswer: numbers.name,
+                displayImage: numbers.referenceImagePath,
+                isColorQuestion: true,
+                id: numbers.name,
+              );
+            }).toList();
         questions.shuffle();
         Get.toNamed(
           AppRoutes.NUMBERSQUIZSCREEN,

@@ -6,7 +6,6 @@ import 'package:lexi_learn/core/Const/app_images.dart';
 import 'package:lexi_learn/core/app_routes/routes.dart';
 import 'package:lexi_learn/core/widgets/custom_appbar.dart';
 import 'package:lexi_learn/data/models/modules_model.dart';
-import 'package:lexi_learn/data/models/user_model.dart';
 import '../../../core/utils/app_sizes.dart';
 import '../../../core/widgets/custom_container.dart';
 import '../controllers/home_controller.dart';

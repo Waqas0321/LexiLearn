@@ -66,7 +66,7 @@ class NumberDetailScreen extends StatelessWidget {
                                 ),
                                 Image.asset(
                                   currentAlphabet.imagePath,
-                                  height: 90,
+                                  height: 60,
                                 ),
                                 GestureDetector(
                                   onTap: controller.next,
@@ -88,8 +88,8 @@ class NumberDetailScreen extends StatelessWidget {
                             Spacer(),
                             Image.asset(
                               currentAlphabet.referenceImagePath,
-                              height: 130,
-                              width: 130,
+                              height: 180,
+                              width: 180,
                             ),
                             Gap(30),
                             GestureDetector(

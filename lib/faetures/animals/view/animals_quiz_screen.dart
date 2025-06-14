@@ -11,7 +11,7 @@ import '../../../data/models/question_model.dart';
 import '../controller/animals_quiz_controller.dart';
 
 class AnimalsQuizScreen extends StatelessWidget {
-  final AnimalsQuizController controller = Get.find();
+  final AnimalsQuizController controller = Get.put(AnimalsQuizController());
   final AppSizes appSizes = AppSizes();
 
   AnimalsQuizScreen({super.key});
@@ -81,11 +81,11 @@ class AnimalsQuizScreen extends StatelessWidget {
                           controller: controller.pageController,
                           itemCount: controller.questions.length,
                           physics: const NeverScrollableScrollPhysics(),
+                          onPageChanged: (index) {
+                            controller.currentPage.value = index;
+                          },
                           itemBuilder: (context, index) {
                             final question = controller.questions[index];
-                            final matchedAnswer =
-                                controller.matchedAnswers[question.id];
-                            final submitted = controller.submitted.value;
                             return Padding(
                               padding: appSizes.getCustomPadding(
                                 top: 0,
@@ -183,32 +183,43 @@ class AnimalsQuizScreen extends StatelessWidget {
                                   Gap(appSizes.getHeightPercentage(7)),
                                   Row(
                                     mainAxisAlignment:
-                                        index == 0
-                                            ? MainAxisAlignment.end
-                                            : MainAxisAlignment.spaceBetween,
+                                    index > 0
+                                        ? MainAxisAlignment.spaceBetween
+                                        : MainAxisAlignment.end,
                                     children: [
                                       if (index > 0)
                                         GestureDetector(
                                           onTap: () {
                                             controller.pageController
                                                 .previousPage(
-                                                  duration: const Duration(
-                                                    milliseconds: 300,
-                                                  ),
-                                                  curve: Curves.ease,
-                                                );
+                                              duration: const Duration(
+                                                milliseconds: 300,
+                                              ),
+                                              curve: Curves.ease,
+                                            );
                                           },
                                           child: Container(
                                             padding: EdgeInsets.all(6),
                                             decoration: BoxDecoration(
                                               color: AppColors.blackish,
                                               borderRadius:
-                                                  BorderRadius.circular(8),
+                                              BorderRadius.circular(8),
                                             ),
-                                            child: Icon(
-                                              Icons.arrow_back_ios_new,
-                                              size: 28,
-                                              color: AppColors.white,
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.arrow_back_ios_new,
+                                                  size: 25,
+                                                  color: AppColors.white,
+                                                ),
+                                                CustomTextWidget(
+                                                  text: "Previous",
+                                                  textColor: AppColors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                                Gap(4),
+                                              ],
                                             ),
                                           ),
                                         ),
@@ -228,12 +239,23 @@ class AnimalsQuizScreen extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               color: AppColors.blackish,
                                               borderRadius:
-                                                  BorderRadius.circular(8),
+                                              BorderRadius.circular(8),
                                             ),
-                                            child: Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: AppColors.white,
-                                              size: 28,
+                                            child: Row(
+                                              children: [
+                                                Gap(4),
+                                                CustomTextWidget(
+                                                  text: "Next",
+                                                  textColor: AppColors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                                Icon(
+                                                  Icons.arrow_forward_ios,
+                                                  color: AppColors.white,
+                                                  size: 25,
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),
@@ -251,18 +273,25 @@ class AnimalsQuizScreen extends StatelessWidget {
               ),
             ),
             Gap(8),
-            Padding(
-              padding: appSizes.getCustomPadding(top: 0, bottom: 3),
-              child: Obx(
-                () => CustomElevatedButton(
-                  isLoading: controller.isLoading.value,
-                  onPress: () {
-                    controller.submit(quizIndex);
-                  },
-                  text: "🚀 Submit Answers",
+            Obx(() {
+              bool isLastPage =
+                  controller.currentPage.value ==
+                  controller.questions.length - 1;
+
+              return Visibility(
+                visible: isLastPage,
+                child: Padding(
+                  padding: appSizes.getCustomPadding(top: 0, bottom: 3),
+                  child: CustomElevatedButton(
+                    isLoading: controller.isLoading.value,
+                    onPress: () {
+                      controller.submit(quizIndex);
+                    },
+                    text: "🚀 Submit Answers",
+                  ),
                 ),
-              ),
-            ),
+              );
+            }),
           ],
         ),
       ),

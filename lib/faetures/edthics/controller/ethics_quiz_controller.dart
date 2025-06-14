@@ -9,6 +9,7 @@ import '../../../data/models/question_model.dart';
 class EthicsQuizController extends GetxController {
   FireStoreProvider fireStore = FireStoreProvider();
   ToastClass toast = ToastClass();
+  final RxInt currentPage = 0.obs;
 
   var submitted = false.obs;
   var questions = <QuestionModel>[].obs;
@@ -47,7 +48,6 @@ class EthicsQuizController extends GetxController {
   void submit(int quizIndex) async {
     try {
       isLoading.value = true;
-      print(quizIndex);
       final data = prepareQuizData(quizIndex);
       await storeQuizData(data);
       submitted.value = true;
@@ -78,8 +78,11 @@ class EthicsQuizController extends GetxController {
 
   void showQuizResultToast() {
     final score = getScore();
-    final totalQuestions = questions.length;
-    toast.showCustomToast("You scored $score out of $totalQuestions");
+    if(score > 2){
+      toast.showCustomToast("Good effort you attempt best");
+    }else{
+      toast.showCustomToast("Good but do effort for better");
+    }
   }
 
   void handleSubmissionError(dynamic error) {
