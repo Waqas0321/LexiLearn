@@ -157,8 +157,8 @@ class AiChatScreen extends StatelessWidget {
                             ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
+                Obx(() => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 18),
                   child: Row(
                     children: [
                       Expanded(
@@ -167,15 +167,29 @@ class AiChatScreen extends StatelessWidget {
                           borderColor: AppColors.white,
                           isFilled: true,
                           textEditingController: controller.messageController,
-                          labelText: '',
+                          labelText: 'Message',
                         ),
                       ),
                       const Gap(8),
+                      GestureDetector(
+                        onTap: controller.toggleListening,
+                        child: CircleAvatar(
+                          backgroundColor: controller.isListening.value
+                              ? AppColors.orange
+                              : AppColors.white,
+                          radius: 26,
+                          child: Icon(
+                            controller.isListening.value ? Icons.mic : Icons.mic_none,
+                            color: controller.isListening.value
+                                ? AppColors.white
+                                : AppColors.orange,
+                          ),
+                        ),
+                      ),
+                      const Gap(6),
                       ElevatedButton(
                         onPressed: () {
-                          controller.sendMessage(
-                            controller.messageController.text,
-                          );
+                          controller.sendMessage(controller.messageController.text);
                           controller.messageController.clear();
                         },
                         style: ElevatedButton.styleFrom(
@@ -183,15 +197,12 @@ class AiChatScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(10),
                           backgroundColor: AppColors.white,
                         ),
-                        child: const Icon(
-                          Icons.send,
-                          color: AppColors.orange,
-                          size: 29,
-                        ),
+                        child: const Icon(Icons.send, color: AppColors.orange, size: 29),
                       ),
                     ],
                   ),
-                ),
+                ))
+
               ],
             ),
           ),
