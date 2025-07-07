@@ -157,52 +157,66 @@ class AiChatScreen extends StatelessWidget {
                             ),
                   ),
                 ),
-                Obx(() => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 18),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: CustomInputTextField(
-                          hintText: 'Type message...',
-                          borderColor: AppColors.white,
-                          isFilled: true,
-                          textEditingController: controller.messageController,
-                          labelText: 'Message',
-                        ),
-                      ),
-                      const Gap(8),
-                      GestureDetector(
-                        onTap: controller.toggleListening,
-                        child: CircleAvatar(
-                          backgroundColor: controller.isListening.value
-                              ? AppColors.orange
-                              : AppColors.white,
-                          radius: 26,
-                          child: Icon(
-                            controller.isListening.value ? Icons.mic : Icons.mic_none,
-                            color: controller.isListening.value
-                                ? AppColors.white
-                                : AppColors.orange,
+                Obx(
+                  () => Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 18,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: CustomInputTextField(
+                            hintText: 'Type message...',
+                            borderColor: AppColors.white,
+                            isFilled: true,
+                            textEditingController: controller.messageController,
+                            labelText: 'Message',
                           ),
                         ),
-                      ),
-                      const Gap(6),
-                      ElevatedButton(
-                        onPressed: () {
-                          controller.sendMessage(controller.messageController.text);
-                          controller.messageController.clear();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(),
-                          padding: const EdgeInsets.all(10),
-                          backgroundColor: AppColors.white,
+                        const Gap(8),
+                        GestureDetector(
+                          onTap: controller.toggleListening,
+                          child: CircleAvatar(
+                            backgroundColor:
+                                controller.isListening.value
+                                    ? AppColors.orange
+                                    : AppColors.white,
+                            radius: 26,
+                            child: Icon(
+                              controller.isListening.value
+                                  ? Icons.mic
+                                  : Icons.mic_none,
+                              color:
+                                  controller.isListening.value
+                                      ? AppColors.white
+                                      : AppColors.orange,
+                            ),
+                          ),
                         ),
-                        child: const Icon(Icons.send, color: AppColors.orange, size: 29),
-                      ),
-                    ],
+                        const Gap(6),
+                        ElevatedButton(
+                          onPressed: () {
+                            controller.sendMessage(
+                              controller.messageController.text,
+                            );
+                            controller.messageController.clear();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: const CircleBorder(),
+                            padding: const EdgeInsets.all(10),
+                            backgroundColor: AppColors.white,
+                          ),
+                          child: const Icon(
+                            Icons.send,
+                            color: AppColors.orange,
+                            size: 29,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ))
-
+                ),
               ],
             ),
           ),
